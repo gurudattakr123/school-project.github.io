@@ -1,12 +1,12 @@
 {
-  "name": "nodekb",
+  "name": "school",
   "version": "1.0.0",
-  "description": "Rajaratha",
+  "description": "School project",
   "main": "app.js",
   "scripts": {
     "start": "node app"
   },
-  "author": "IVDS Technologies.",
+  "author": "Sandeep and Gurudath.",
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",

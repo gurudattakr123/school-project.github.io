@@ -1,57 +1,56 @@
-var express = require('express');
-var router = express.Router();
 
-var isAuthenticated = function (req, res, next) {
-	// if user is authenticated in the session, call the next() to call the next request handler 
-	// Passport adds this method to request object. A middleware is allowed to add properties to
-	// request and response objects
-	if (req.isAuthenticated())
-		return next();
-	// if the user is not authenticated then redirect him to the login page
-	res.redirect('/');
-}
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
+const user=require('../models/user');
 
-module.exports = function(passport){
 
-	/* GET login page. */
-	router.get('/', function(req, res) {
-    	// Display the Login page with any flash message, if any
-		res.render('index', { message: req.flash('message') });
-	});
 
-	/* Handle Login POST */
-	router.post('/login', passport.authenticate('login', {
-		successRedirect: '/home',
-		failureRedirect: '/',
-		failureFlash : true  
-	}));
 
-	/* GET Registration Page */
-	router.get('/signup', function(req, res){
-		res.render('register',{message: req.flash('message')});
-	});
+router.get('/', function(req, res){
+  res.render('login');
+});
 
-	/* Handle Registration POST */
-	router.post('/signup', passport.authenticate('signup', {
-		successRedirect: '/home',
-		failureRedirect: '/signup',
-		failureFlash : true  
-	}));
 
-	/* GET Home Page */
-	router.get('/home', isAuthenticated, function(req, res){
-		res.render('home', { user: req.user });
-	});
 
-	/* Handle Logout */
-	router.get('/signout', function(req, res) {
-		req.logout();
-		res.redirect('/');
-	});
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { 
+      return next(err); 
+    }
+    if (!user) { 
+      return res.render("production/main",{danger:"Either Username or Password is not correct!",success:'',signmsg:'',logoutmsg:''});
+    }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      if(user.Role=="fieldExe_role"){
+      return res.redirect('/Rajaratha/registeredowner');
+      }
+      return res.redirect('/Rajaratha/Dashboard');
+    });
+  })(req, res, next);
+});
 
-	return router;
-}
 
+router.get('/signout',  function(req, res){
+  res.render('production/main',{danger:'',success:'',signmsg:'',logoutmsg:'Logged out successfully.'});
+});
+
+router.get('/logout', isValidUser, function(req, res){
+  req.logout();
+  res.redirect('/Rajaratha/signout');
+  });
+
+  function isValidUser(req,res,next){
+    if(req.isAuthenticated()){
+    next();
+    }
+    else{
+        res.redirect('/Rajaratha/login');
+  }
+  }
+
+module.exports = router;
 
 
 

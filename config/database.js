@@ -1,7 +1,7 @@
 module.exports = {
-database:'mongodb+srv://Msky:msky%40123@rajaratha-xsrfp.mongodb.net/Rajaratha',
-/* database:'mongodb+srv://ganaraj:ganaraj@cluster0-7lphh.mongodb.net/test' */
-
+database:'mongodb+srv://schoolproject:project%40%40123@cluster0.mongodb.net/schoolProject',
+/* database:'mongodb+srv://ganaraj:ganaraj@cluster0-7lphh.mongodb.net/test' 
+mongodb+srv://schoolproject:project%40%40123@cluster0.mongodb.net/schoolProject */
 
 
 //database:'mongodb://localhost/user',
