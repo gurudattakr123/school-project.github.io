@@ -211,7 +211,7 @@ h6 {
   padding-bottom: 60px;
 }
 .container-fluid {
-  padding: 0 30px 25px;
+  padding: 0 25px 25px;
 }
 @media (min-width: 1024px) {
   .page-wrapper {
@@ -1916,8 +1916,8 @@ textarea {
 }
 .page-titles {
   background: #ffffff;
-  margin: 0 0 30px;
-  padding: 15px 10px;
+  margin: 0 0 15px;
+  padding: 10px 10px;
   position: relative;
   z-index: 10;
   -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
@@ -1930,7 +1930,7 @@ textarea {
 .page-titles .breadcrumb {
   padding: 0;
   background: transparent;
-  font-size: 14px;
+  font-size: 13px;
 }
 .page-titles .breadcrumb li {
   margin-top: 0;
@@ -2260,7 +2260,7 @@ textarea {
   padding: 20px;
   border: 0 solid #e7e7e7;
   border-radius: 5px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: -4px -3px 20px 2px rgba(0, 0, 0, 0.05);
 }
 .card-subtitle {
   font-size: 12px;
@@ -4855,8 +4855,8 @@ footer p {
   margin-bottom: 20px;
 }
 .form-control {
-  height: 42px;
-  border-radius: 0;
+  height: 34px;
+  border-radius: 10px;
   box-shadow: none;
   border-color: #e7e7e7;
   font-family: 'Poppins', sans-serif;
@@ -4888,7 +4888,7 @@ footer p {
 /*    Search Box Input Button
 --------------------------------*/
 .input-group-btn .btn {
-  padding: 10px 12px;
+  padding:  4px;
 }
 .input-group-default .form-control {
   border-radius: 4px;
@@ -6921,3 +6921,87 @@ tbody tr td:last-child {
     display: inline-block !important;
   }
 }
+
+ .right-top{
+    position:absolute;
+    top:0;
+    right:0;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top:10px;
+      width: 40px;
+      height: 40px;
+     /* background: rgb(66, 112, 102); */
+      text-align: center;
+      font-weight: bold
+  }
+
+  /*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+.select-selected {
+  background-color:rgb(255, 255, 255)
+}
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid black;
+  border-color: black white white white;
+}
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: white white black white;
+  top: 7px;
+}
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #000000;
+  padding: 3px;
+  cursor: pointer;
+}
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: rgb(228, 232, 236);
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border-radius: inherit;
+}
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.address{
+  border-radius: 10px;
+  width:100%;
+  box-shadow: none;
+  border-color: #e7e7e7;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* custom list in add class display */
+.toggle_menu .hidden {
+  display:none;
+}
+
+
+
+ 
+
+

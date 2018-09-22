@@ -19,6 +19,7 @@
     "express": "*",
     "express-messages": "*",
     "express-session": "*",
+    "express-toastr": "*",
     "heatmap.js": "^2.0.5",
     "jquery": "^3.3.1",
     "mongoose": "^5.1.4",

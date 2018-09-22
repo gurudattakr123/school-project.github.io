@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/helper.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
+</head>
+
+<body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <!-- header header  -->
+        <% include ./partials/navbar.ejs %>
+        <% include ./partials/sidebar.ejs %>
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <!-- Bread crumb -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">Teacher details</h3> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="/teachers/list">Teachers List</a></li>
+                        <li class="breadcrumb-item active">Add Teacher</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- End Bread crumb -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                        <div class="card-header">
+                                <h4 class="text-white">Fill Details</h4>
+                                
+                            </div>
+                            <div class="card-body"> 
+                            <!-- form -->
+                            <div class="col-sm-8">
+                                    <form class="form-horizontal p-t-20">
+                                        <div class="form-group row">
+                                            <label for="exampleInputuname3" class="col-sm-3 control-label">Name*</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="exampleInputuname3" placeholder="Name">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                        <label for="web" class="col-sm-3 control-label">Gender*</label>
+                                        <div class="col-sm-9">
+                                            <div class="custom-select">
+                                            <select name="Gender">
+                                                <option name="" value="gender">Gender</option>
+                                                <option name="admin" value="male">Male</option>
+                                                <option name="operator" value="female">Female</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="web" class="col-sm-3 control-label">Date of birth*</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <input type="date" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputEmail3" class="col-sm-3 control-label">Email*</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Enter email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                       
+                                        <div class="form-group row">
+                                            <label for="inputPassword4" class="col-sm-3 control-label">Phone number*</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="exampleInputpwd4" placeholder="Phone number">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label for="inputPassword4" class="col-sm-3 control-label">Address*</label>
+                                            <div class="col-sm-9">
+                                            <textarea placeholder="Enter full Address" rows="5" class="address"></textarea>                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputPassword4" class="col-sm-3 control-label">Date of joining*</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="date" class="form-control" id="exampleInputpwd4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="form-group row">
+                                        <label for="inputPassword5" class="col-sm-3 control-label">Profile Photo</label>
+                                        <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-secondary">
+                                                <i class="fa fa-file-image" aria-hidden="true"></i> Browse<input type="file" style="display: none;" single>
+                                                </span>
+                                            </label>
+                                            <input type="text" class="form-control" disabled>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                        <label for="inputPassword5" class="col-sm-3 control-label">Username*</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="exampleInputpwd5" placeholder="Set username for Login">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                    <label for="inputPassword5" class="col-sm-3 control-label">password*</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input type="password" class="form-control" id="exampleInputpwd5" placeholder="ENter Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="form-actions">
+                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="button" class="btn btn-inverse">Cancel</button>
+                                    </div>
+                                    
+                                    </form>
+                                    </div>
+                            <!-- end form -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End PAge Content -->
+            </div>
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
+            <!-- End footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script src="js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="js/custom.min.js"></script>
+
+</body>
+
+</html>
