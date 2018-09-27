@@ -2,16 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/list', isValidUser, function(req, res, next){
-    res.render('teachers_list');
+    res.render('subjects-list');
 })
 
 router.get('/add', isValidUser, function(req, res, next){
-    res.render('add-teacher');
+    res.render('add-subject');
 })
 
-router.get('/attendance', isValidUser, function(req, res, next){
-    res.render('teacher-attendance');
-})
 
 function isValidUser(req,res,next){
     if(req.isAuthenticated()){

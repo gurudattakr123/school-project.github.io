@@ -17,7 +17,7 @@
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    
+    <link href="js/select2/dist/css/select2.css" rel="stylesheet">
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -31,16 +31,18 @@
         <!-- header header  -->
         <% include ./partials/navbar.ejs %>
         <% include ./partials/sidebar.ejs %>
-        <!-- Page wrapper  -->
+
+                <!-- Page wrapper  -->
+
         <div class="page-wrapper">
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Class Details</h3> </div>
+                    <h3 class="text-primary">Attendance</h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Class List</li>
+                        <li class="breadcrumb-item active">Teachers Attendance</li>
                     </ol>
                 </div>
             </div>
@@ -49,61 +51,64 @@
             <div class="container-fluid">
                 <!-- Start Page Content -->
                 <div class="row">
-                    <div class="col-12">
-                    <div class="col-3"><a href="/classes/add" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2"><i class="fa fa-plus"></i> Add class.</a></div>
+                    <div class="col-lg-12">
                         <!--if condition apply here-->
+                    <div class="card">
+                            <div class="card-header">
+                                <h4 class="text-white">Select options</h4>
+                            </div>
+                            <div class="card-body">
                         <div class="row">
-                    <!-- column -->
-                    <div class="col-lg-6">
-                        <div class="card card-hover">
-                            <div class="card-block">
-                                <h4 class="card-title">Class 1</h4>
-                                <div class="right-top"> 64 </div>
-                                <h5> Class Teacher : Name </h5>
-                                <br>
-                                <div class="custom-select col-sm-4" style="boeder: none">
-                                            <select name="Gender">
-                                                <option name="" value="gender">Section</option>
-                                                <option name="admin" value="male">A</option>
-                                                <option name="operator" value="female">B</option>
-                                            </select>
-                                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- column -->
-                    <% for(i=0;i<10;i++){%>
-                    <div class="col-lg-6">
-                    
-                    <div class="card card-hover">
-                        <a href="/classes/list/className=<%= i %>">
-                            <div class="card-block">
+                             <div class="col-md-4">
+                             <div class="card p-30 card-hover">
+                             <div class="custom-select">
+                             <select name="Gender">
+                                 <option name="" value="gender">class</option>
+                                 <option name="admin" value="male">1</option>
+                                 <option name="operator" value="female">2</option>
+                             </select>
+                             </div>
+                             </div>
+                         </div>
+
+                                 <div class="col-md-4">
+                                 <div class="card p-30 card-hover">
+                                 <div class="custom-select">
+                                 <select name="Gender">
+                                     <option name="" value="gender">section</option>
+                                     <option name="admin" value="male">A</option>
+                                     <option name="operator" value="female">B</option>
+                                 </select>
+                                 </div>
+                                 </div>
+                             </div>
 
 
-                            <div class="wrapper wrapper1"  id="wrapper">
-                            <ol id="chaps">
-                            <li>
-                            <h2>Newton</h2>
-                            <ul class="sublist">
-                                <li><a><i class="fa fa-angle-right">Black</i></a></li>
-                                <li><a><i class="fa fa-angle-right">Black</i></a>Bald</li>
-                                <li><a><i class="fa fa-angle-right">Black</i></a>A Bitch</li>
-                            </ul>  
-                            </li>
-                            </ol>
-                            </div>
-
-                        
-
-                            <div class="right-top"> 64 </div>
-                            <h5> Class Teacher : Name </h5>
-                        </div>
+                         <div class="col-md-4">
+                             <div class="card p-30 card-hover">
+                             <div class="custom-select">
+                             <select name="Gender">
+                                 <option name="" value="gender">subject</option>
+                                 <option name="admin" value="male">A</option>
+                                 <option name="operator" value="female">B</option>
+                             </select>
+                             </div>
+                             </div>
+                          </div>                 
+                    </div><br><br><br><br>
+                    <div class="info noteStyle">
+                    <p><strong>INFO!</strong><ul><li>This page uploads today's attendance only!</li><br><li> For attendance history, goto Reports >  Attendance Reports ><a href="#" title ="click for complete attendance report">Teacher attendance report</a></li></ui></p>
                     </div>
                 </div>
-                </a>
-                <%}%>
-            
+                        <!-- end of card div -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>
                 <!-- End PAge Content -->
+                
             </div>
             <!-- End Container fluid  -->
             <!-- footer -->
@@ -114,6 +119,7 @@
     </div>
     <!-- End Wrapper -->
     <!-- All Jquery -->
+    <script src="js/select2/dist/js/select2.full.min.js"></script>
     <script src="js/lib/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
@@ -126,6 +132,7 @@
     <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+
 </body>
 
 </html>
