@@ -24,7 +24,7 @@ let subjects = require('./routes/subjects');
 
 
 
-mongoose.connect('mongodb+srv://user:pass@schoolproject-jmyey.gcp.mongodb.net/School', { user: 'guru', pass: 'guru', useNewUrlParser: true }).then(function () {
+mongoose.connect('mongodb+srv://user:pass@schoolproject-jmyey.gcp.mongodb.net/School', { user: 'guru', pass: 'project_123', useNewUrlParser: true }).then(function () {
   console.log("connected");
 }).catch(function (err) {
   console.log("not connected " + err);

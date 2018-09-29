@@ -28,6 +28,7 @@
     "nodemailer": "^4.6.7",
     "nodemon": "^1.18.0",
     "parsley": "*",
+    "parsleyjs": "^2.8.1",
     "passport": "*",
     "passport-local": "*",
     "popper.js": "^1.14.3"

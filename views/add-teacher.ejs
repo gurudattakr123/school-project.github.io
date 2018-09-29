@@ -59,12 +59,21 @@
                             <div class="card-body"> 
                             <!-- form -->
                             <div class="col-sm-8">
-                                    <form class="form-horizontal p-t-20">
-                                        <div class="form-group row">
-                                            <label for="exampleInputuname3" class="col-sm-3 control-label">Name*</label>
+                            <form class="form-horizontal p-t-20" action="/teachers/add" method="post">
+                            <div class="form-group row">
+                                            <label for="exampleInputuname3" class="col-sm-3 control-label">First Name*</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="exampleInputuname3" placeholder="Name">
+                                                    <input type="text" class="form-control" name = "first_name" placeholder="First Name">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="exampleInputuname3" class="col-sm-3 control-label">Last Name*</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name = "last_name" placeholder="Last Name">
                                                 </div>
                                             </div>
                                         </div>
@@ -73,10 +82,10 @@
                                         <label for="web" class="col-sm-3 control-label">Gender*</label>
                                         <div class="col-sm-9">
                                             <div class="custom-select">
-                                            <select name="Gender">
+                                            <select name="gender">
                                                 <option name="" value="gender">Gender</option>
-                                                <option name="admin" value="male">Male</option>
-                                                <option name="operator" value="female">Female</option>
+                                                <option name="male" value="male">Male</option>
+                                                <option name="female" value="female">Female</option>
                                             </select>
                                             </div>
                                         </div>
@@ -86,15 +95,26 @@
                                         <label for="web" class="col-sm-3 control-label">Date of birth*</label>
                                         <div class="col-sm-9">
                                             <div class="input-group">
-                                                <input type="date" class="form-control">
+                                                <input type="date" class="form-control" id="date" name="dob" onblur="getAge();" required>
                                             </div>
                                         </div>
                                     </div>
+   
+                                    <div class="form-group row">
+                                            <label for="exampleInputEmail3" class="col-sm-3 control-label">Age*</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="text" id="age" name="age" value="" class="form-control" placeholder="Age" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    
                                         <div class="form-group row">
                                             <label for="exampleInputEmail3" class="col-sm-3 control-label">Email*</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
-                                                    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Enter email">
+                                                    <input type="email" class="form-control" name = "email" placeholder="Enter email">
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +124,7 @@
                                             <label for="inputPassword4" class="col-sm-3 control-label">Phone number*</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="exampleInputpwd4" placeholder="Phone number">
+                                                    <input type="text" class="form-control" name="phone_num" placeholder="Phone number">
                                                 </div>
                                             </div>
                                         </div>
@@ -112,14 +132,14 @@
                                         <div class="form-group row">
                                             <label for="inputPassword4" class="col-sm-3 control-label">Address*</label>
                                             <div class="col-sm-9">
-                                            <textarea placeholder="Enter full Address" rows="5" class="address"></textarea>                                            </div>
+                                            <textarea placeholder="Enter full Address" rows="5" class="address" name="address"></textarea>                                            </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="inputPassword4" class="col-sm-3 control-label">Date of joining*</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
-                                                    <input type="date" class="form-control" id="exampleInputpwd4">
+                                                    <input type="date" class="form-control" name="doj">
                                                 </div>
                                             </div>
                                         </div>
@@ -143,16 +163,14 @@
                                         <label for="web" class="col-sm-3 control-label">Subject Specialization*</label>
                                         <div class="col-sm-9">
                                             <div class="custom-select">
-                                            <select name="Gender">
-                                                <option name="" value="gender">Subjects</option>
-                                                <option name="admin" value="male">Science</option>
-                                                <option name="operator" value="female">Maths</option>
-                                                <option name="operator" value="female">Social</option>
-                                                <option name="operator" value="female">english</option>
-                                                <option name="operator" value="female">kannada</option>
-                                                <option name="operator" value="female">ok</option>
-
-
+                                            <select name="subject_id">
+                                                <option name="" value="gender">Subjects</option> <!--add subjects first, id will be set -->
+                                                <option name="Science" value="male">Science</option> <!-- assign subject_id to teachers subject_id -->
+                                                <option name="Maths" value="female">Maths</option>  <!-- name field should be <%= teacher[i].subject_id %> -->
+                                                <option name="Social" value="female">Social</option> <!-- multiple select is required -->
+                                                <option name="english" value="female">english</option>
+                                                <option name="kannada" value="female">kannada</option>
+                                                <option name="ok" value="female">ok</option>
                                             </select>
                                             </div>
                                         </div>
@@ -163,7 +181,7 @@
                                         <label for="inputPassword5" class="col-sm-3 control-label">Username*</label>
                                         <div class="col-sm-9">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="exampleInputpwd5" placeholder="Set username for Login">
+                                                <input type="text" class="form-control" name="username" placeholder="Set username for Login">
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +189,7 @@
                                     <label for="inputPassword5" class="col-sm-3 control-label">password*</label>
                                     <div class="col-sm-9">
                                         <div class="input-group">
-                                            <input type="password" class="form-control" id="exampleInputpwd5" placeholder="ENter Password">
+                                            <input type="password" class="form-control" name="password" placeholder="Enter Password">
                                         </div>
                                     </div>
                                 </div>
@@ -201,6 +219,17 @@
     </div>
     <!-- End Wrapper -->
     <!-- All Jquery -->
+    <script type="text/javascript">
+
+    function getAge(){
+        var dob = document.getElementById('date').value;
+        dob = new Date(dob);
+        var today = new Date();
+        var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+        document.getElementById('age').value=age;
+    }
+    
+    </script>
     <script src="js/lib/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="js/lib/bootstrap/js/popper.min.js"></script>

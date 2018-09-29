@@ -9,6 +9,9 @@ router.get('/add', isValidUser, function(req, res, next){
     res.render('add-others');
 });
 
+router.get('/attendance', isValidUser, function(req, res, next){
+    res.render('others-attendance');
+})
 
 
 function isValidUser(req,res,next){

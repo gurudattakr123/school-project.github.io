@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const User=require('../models/user');
+const User=require('../models/Users');
 var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');

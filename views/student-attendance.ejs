@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/helper.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="js/select2/dist/css/select2.css" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <!-- header header  -->
+        <% include ./partials/navbar.ejs %>
+        <% include ./partials/sidebar.ejs %>
+
+                <!-- Page wrapper  -->
+
+        <div class="page-wrapper">
+            <!-- Bread crumb -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">Attendance</h3> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Students Attendance</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- End Bread crumb -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!--if condition apply here-->
+                    <div class="card">
+                            <div class="card-header">
+                                <h4 class="text-white">Select options</h4>
+                            </div>
+                            <div class="card-body">
+                        <div class="row">
+                             <div class="col-md-4">
+                             <div class="card p-30 card-hover">
+                             <div class="custom-select">
+                             <select name="Gender">
+                                 <option name="" value="gender">class</option>
+                                 <option name="admin" value="male">1</option>
+                                 <option name="operator" value="female">2</option>
+                             </select>
+                             </div>
+                             </div>
+                         </div>
+
+                                 <div class="col-md-4">
+                                 <div class="card p-30 card-hover">
+                                 <div class="custom-select">
+                                 <select name="Gender">
+                                     <option name="" value="gender">section</option>
+                                     <option name="admin" value="male">A</option>
+                                     <option name="operator" value="female">B</option>
+                                 </select>
+                                 </div>
+                                 </div>
+                             </div>
+
+
+                         <div class="col-md-4">
+                             <div class="card p-30 card-hover">
+                             <div class="custom-select">
+                             <select name="Gender">
+                                 <option name="" value="gender">subject</option>
+                                 <option name="admin" value="male">A</option>
+                                 <option name="operator" value="female">B</option>
+                             </select>
+                             </div>
+                             </div>
+                          </div>                 
+                    </div><br><br><br><br>
+                    <div class="info noteStyle">
+                    <p><strong>INFO!</strong><ul><li>This page uploads today's attendance only!</li><br><li> For attendance history, goto Reports >  Attendance Reports ><a href="#" title ="click for complete attendance report">student attendance report</a></li></ui></p>
+                    </div>
+                </div>
+                        <!-- end of card div -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>
+                <!-- End PAge Content -->
+                
+            </div>
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
+            <!-- End footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script src="js/select2/dist/js/select2.full.min.js"></script>
+    <script src="js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="js/custom.min.js"></script>
+
+</body>
+
+</html>
