@@ -41,12 +41,12 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Add class / section</h3> </div>
+                    <h3 class="text-primary">Add section</h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="/others/list">others List</a></li>
-                        <li class="breadcrumb-item active">Add Others</li>
+                        <li class="breadcrumb-item"><a href="/classes/list">Class List</a></li>
+                        <li class="breadcrumb-item active">Add section</li>
                     </ol>
                 </div>
             </div>
@@ -64,12 +64,12 @@
                             <div class="card-body"> 
                             <!-- form -->
                             <div class="col-sm-8">
-                                    <form class="form-horizontal p-t-20" autocomplete="off">
+                                    <form class="form-horizontal p-t-20" autocomplete="off" method="POST" action="/classes/sections/add">
                                         <div class="form-group row">
-                                            <label for="exampleInputuname3" class="col-sm-3 control-label">Class*</label>
+                                            <label for="exampleInputuname3" class="col-sm-3 control-label">Section Name*</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="exampleInputuname3" placeholder="Class ">
+                                                    <input type="text" class="form-control" name="section_name" placeholder="Class ">
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                                             <label for="exampleInputuname3" class="col-sm-3 control-label">Class Numeric*</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="exampleInputuname3" placeholder="Class number">
+                                                    <input type="number" class="form-control"  placeholder="Class number">
                                                 </div>
                                             </div>
                                         </div>

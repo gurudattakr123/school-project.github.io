@@ -163,11 +163,8 @@
                                         <label for="web" class="col-sm-3 control-label">Subject Specialization*</label>
                                         <div class="col-sm-9">
                                             <div class="custom-select">
-                                            <select name="subject_id">
-                                                <option name="" value="gender">Subjects</option> <!--add subjects first, id will be set -->
-                                                <option name="Science" value="male">Science</option> <!-- assign subject_id to teachers subject_id -->
-                                                <option name="Maths" value="female">Maths</option>  <!-- name field should be <%= teacher[i].subject_id %> -->
-                                                <option name="Social" value="female">Social</option> <!-- multiple select is required -->
+                                            <select name="subjects">
+                                                <option name="" value="gender">Subjects</option> 
                                                 <option name="english" value="female">english</option>
                                                 <option name="kannada" value="female">kannada</option>
                                                 <option name="ok" value="female">ok</option>
@@ -175,6 +172,11 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- add subjects first, id will be set
+                                   assign subject_id to teachers subject_id 
+                                     name field should be teacher[i].subject_id 
+                                    multiple select is required -->
 
 
                                         <div class="form-group row">

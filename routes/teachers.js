@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const teacher = require('../models/Teachers')
 const multer = require('multer');
+const counter = require('../models/Counter');
+
 
 var upload = multer({storage: multer.diskStorage({
     destination: function (req, file, callback) 
@@ -13,7 +15,11 @@ var upload = multer({storage: multer.diskStorage({
 })
 
 router.get('/list', isValidUser, function(req, res, next){
-    res.render('teachers_list');
+
+ teacher.find(function(err, result){
+        res.render('teachers_list', {teachers:result});
+
+    });
 })
 
 router.get('/add', isValidUser, function(req, res, next){
@@ -38,37 +44,40 @@ router.post('/add', upload.any(), function(req, res, next){
          else{
             counter.findOne(function(err, result){
             if(err) throw err;
+            console.log(result)
             count = result.teacher_id;
+            console.log(count)
             teacher_id = "tchr_"+(count + 1);
+            console.log(req.body)
             new teacher({
-                'teacher_id':teacher_id,
+                'teacher_id' : teacher_id,
                 'first_name' : req.body.first_name,
                 'last_name' : req.body.last_name,
                 'dob' : req.body.dob,
                 'age':req.body.age,
                 'gender' : req.body.gender,
+                'subjects' : req.body.subjects,
                 //'profile_pic' : "localhost:3000/uploads/"+req.file[0].filename,
                 'doj': req.body.doj,
-                'email' : req.body.parents_email,
+                'email' : req.body.email,
                 'phone_num' : req.body.phone_num,
                 'address' : req.body.address,
+                'username' : req.body.username,
+                'password' : req.body.password
                 //'class_id': to be done
              }).save(function(err){
                  if(err) throw err;
              })
-            counter.updateOne({'student_id':count}, { $set: { "student_id" : student_id } }, function(err, result){
+            counter.updateOne({'teacher_id':count}, { $set: { "teacher_id" : count++ } }, function(err, result){
                 if(err) throw err;
                 if(result.nModified == 1){
                     console.log('success');//send toastr success
-                    res.redirect('/students/list')
-                }
-                else{
-                    console.log('something went wrong')
-                }
+                    res.redirect('/teachers/list') 
+                }    
             })
         });
              
-}
+    }
      });
     
     }

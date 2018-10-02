@@ -53,23 +53,23 @@ router.post('/add', upload.any(), function(req, res, next){
                 'gender' : req.body.gender,
                 'dob' : req.body.dob,
                 'blood_group' : req.body.blood_group,
-                'class.class_number' : req.body.class,
-                'class.section.section_name' : req.body.section,
+                'class_number' : req.body.class,
+                'section_name' : req.body.section,
                 //'profile_pic' : "localhost:3000/uploads/"+req.file[0].filename,
                 'roll_number' : req.body.roll_no,
-                'admissions.admission_no': req.body.admission_no,
-                'admissions.admission_date': req.body.doj,
-                'parents.father_name' : req.body.father_name,
-                'parents.mother_name' : req.body.mother_name,
-                'parents.phone_num1' : req.body.parents_phone1,
-                'parents.phone_num2' : req.body.parents_phone2,
-                'parents.email' : req.body.parents_email,
-                'parents.address' : req.body.address,
+                'admission_no': req.body.admission_no,
+                'admission_date': req.body.doj,
+                'father_name' : req.body.father_name,
+                'mother_name' : req.body.mother_name,
+                'phone_num1' : req.body.parent_phone1,
+                'phone_num2' : req.body.parent_phone2,
+                'email' : req.body.parents_email,
+                'address' : req.body.address,
                 'extras':req.body.extras
              }).save(function(err){
                  if(err) throw err;
              })
-            counter.updateOne({'student_id':count}, { $set: { "student_id" : student_id } }, function(err, result){
+            counter.updateOne({'student_id':count}, { $set: { "student_id" : count++ } }, function(err, result){
                 if(err) throw err;
                 if(result.nModified == 1){
                     console.log('success');//send toastr success

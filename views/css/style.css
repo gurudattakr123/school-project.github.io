@@ -6926,14 +6926,21 @@ tbody tr td:last-child {
     position:absolute;
     top:0;
     right:0;
-    border-radius: 50%;
     margin-right: 10px;
     margin-top:10px;
-      width: 40px;
-      height: 40px;
+     
      /* background: rgb(66, 112, 102); */
-      text-align: center;
       font-weight: bold
+  }
+
+  .right-bottom{
+    position:absolute;
+    bottom:0;
+    right:0;
+  }
+  .card-center{
+    position:absolute;
+    top:50%
   }
 
   /*the container must be positioned relative:*/

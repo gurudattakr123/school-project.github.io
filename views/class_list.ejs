@@ -54,55 +54,24 @@
                         <!--if condition apply here-->
                         <div class="row">
                     <!-- column -->
-                    <div class="col-lg-6">
-                        <div class="card card-hover">
-                            <div class="card-block">
-                                <h4 class="card-title">Class 1</h4>
-                                <div class="right-top"> 64 </div>
-                                <h5> Class Teacher : Name </h5>
-                                <br>
-                                <div class="custom-select col-sm-4" style="boeder: none">
-                                            <select name="Gender">
-                                                <option name="" value="gender">Section</option>
-                                                <option name="admin" value="male">A</option>
-                                                <option name="operator" value="female">B</option>
-                                            </select>
-                                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- column -->
-                    <% for(i=0;i<10;i++){%>
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
+                    <% for(i=0; i<classes.length; i++){%>
                     
                     <div class="card card-hover">
-                        <a href="/classes/list/className=<%= i %>">
                             <div class="card-block">
 
-
-                            <div class="wrapper wrapper1"  id="wrapper">
-                            <ol id="chaps">
-                            <li>
-                            <h2>Newton</h2>
-                            <ul class="sublist">
-                                <li><a><i class="fa fa-angle-right">Black</i></a></li>
-                                <li><a><i class="fa fa-angle-right">Black</i></a>Bald</li>
-                                <li><a><i class="fa fa-angle-right">Black</i></a>A Bitch</li>
-                            </ul>  
-                            </li>
-                            </ol>
+                            <h2><%= classes[i].class.class_name %></h2><a href="/classes/sections/add.class=<%= classes[i].class.class_id %>" class="right-top btn btn-dark btn-outline m-b-1 m-l-1" style="border:none"><i class="fa fa-plus"></i> Add section</a>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">Section 1</a>
                             </div>
-
-                        
-
-                            <div class="right-top"> 64 </div>
-                            <h5> Class Teacher : Name </h5>
                         </div>
+                        
+                    </div>
+                <%}%>
+                    </div>
+                    <!-- column -->
                     </div>
                 </div>
-                </a>
-                <%}%>
-            
                 <!-- End PAge Content -->
             </div>
             <!-- End Container fluid  -->

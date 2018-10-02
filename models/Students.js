@@ -11,35 +11,19 @@ const StudentSchema = mongoose.Schema({
     profile_pic : String,
     roll_number : String,
     extras : String, 
+    class_number : String,
 
-	class : {
-        class_id : String,
-        name : String,
-        class_number : String,
-        section : { 
-            section_name : String,
-            teacher_id : String 
-        },
-        subjects : {
-            subject_id : String,
-            name : String
-        },
-    },
-
-    parents : {
-        mother_name : String,
-        father_name : String,
-        phone_num1 : Number,
-        phone_num2 : Number,
-        email : String,
-        address : String
-    },
-
-    admissions : {
-        admission_no : String,
-        admission_date: Date,
-        documents : String
-    }
+//parents
+    mother_name : String,
+    father_name : String,
+    phone_num1 : Number,
+    phone_num2 : Number,
+    email : String,
+    address : String,
+//admission details
+    admission_no : String,
+    admission_date: Date,
+    documents : String
 });
 
 

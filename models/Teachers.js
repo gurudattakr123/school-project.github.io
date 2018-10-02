@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const TeacherSchema = mongoose.Schema({
     teacher_id : String,
-    firstName : String,
-    lastName : String,
+    first_name : String,
+    last_name : String,
     gender : String,
     dob : String,
     age : Number,
@@ -13,9 +13,19 @@ const TeacherSchema = mongoose.Schema({
     profile_pic : String,
     class_id : String,
     doj : String, 
-    subject_id : String,
+    subjects : Array,
+    username: String,
     password : String
 });
+
+
+TeacherSchema.methods.hashPassword = function (password) {
+    return bcrypt.hashSync(password, 10);
+  }
+  
+  TeacherSchema.methods.isValid = function (password) {
+    return bcrypt.compareSync(password, this.password);
+  }
 { versionKey: false }
 
 
