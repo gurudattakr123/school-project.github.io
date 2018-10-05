@@ -2,23 +2,19 @@ var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 var ClassSchema=new Schema({
 
-    class : {
         class_id : String,
         class_name : String,
-        class_number : String,
-        teacher_id : String, 
-        section : { 
-            section_name : String,
-            teacher_id : String 
-        },
-        subjects : {
-            subject_id : String,
-            name : String
-        },
-    },
+        class_number : Number,
+        
+        
+        subject_id : String,
+        subject_names : Array,
+        
+        class_teacher : String 
+    
 },
 { versionKey: false }
 
 );
 
-module.exports=mongoose.model('Class',ClassSchema,'Class');
+module.exports=mongoose.model('Class', ClassSchema, 'Class');

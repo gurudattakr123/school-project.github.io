@@ -7,7 +7,6 @@ const Class = require('../models/Classes');
 
 router.get('/list', isValidUser, function(req, res, next){
     Class.find(function(err, result){
-        console.log(result)
         res.render('class_list', {classes : result});
     })
 });
@@ -20,15 +19,11 @@ router.get('/add', isValidUser, function(req, res, next){
 });
 
 
-router.get('/sections/list', isValidUser, function(req, res, next){
-    res.render('section_list');
-});
-
 router.get('/sections/add.class=:class_id', isValidUser, function(req, res, next){
-    Class.find({'class.class_id':req.params.class_id}, function(err, result){
-        console.log(result)
-    })
-    res.render('add-section');
+    teacher.find({},{'_id':0, 'first_name':1, 'last_name':1, 'teacher_id':1},function(err, result){ 
+        if(err) throw err;
+        res.render('add-section', {url:req.originalUrl, tchr_details:result });
+    });
 });
 
 
@@ -38,17 +33,17 @@ router.post('/add', function(req, res){
     class_name = req.body.class_name;
     class_teacher = req.body.class_teacher;
     
-    Class.findOne({$and:[{'class.class_name': class_name, 'class.class_number' : class_number}]}, function(err, result){
+    Class.findOne({$and:[{'class_name': class_name, 'class_number' : class_number}]}, function(err, result){
         if(err) throw err;
         if(result != null){
             console.log('already registered message to be displayed'); // already registered message to be displayed
             res.redirect(url);
         }else{
             new Class({
-                'class.class_id' : "cls_"+class_number,
-                'class.class_number' : class_number,
-                'class.class_name' : class_name,
-                'class.class_teacher' : class_teacher
+                'class_id' : "cls_"+class_number,
+                'class_number' : class_number,
+                'class_name' : class_name,
+                'class_teacher' : class_teacher
             }).save(function(err){
                 if(err) throw err;
             })
@@ -58,6 +53,33 @@ router.post('/add', function(req, res){
     })
 })
 
+router.post('/sections/add.class=:class_id', function(req, res){
+    var url = req.originalUrl;
+    class_id = req.params.class_id;
+    section_name = req.body.section_name;
+    class_teacher_id = req.body.teacher_id;
+    
+    Class.findOne({$and:[{'class_id':class_id}, {'section_name' : section_name}]}, function(err, result){
+            if(err) throw err;
+            console.log(result)
+            if(result != null){
+                console.log('already registered message to be displayed'); // already registered message to be displayed
+                res.redirect(url);
+            }else{
+                new Class({
+                    'class_id' : class_id,
+                    'section_name' : section_name,
+                    'class_teacher' : class_teacher_id
+                }).save(function(err){
+                    if(err) throw err;
+                })
+                console.log('success');//send toastr success
+                res.redirect('/classes/list');
+            }
+        if(err) throw err;
+
+    })
+})
 
 function isValidUser(req,res,next){
     if(req.isAuthenticated()){
