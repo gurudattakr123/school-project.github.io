@@ -31,13 +31,20 @@ router.get('/add', isValidUser, function(req, res, next){
 router.get('/attendance', isValidUser, function(req, res, next){
     classes.find({}, {class_name:1, class_id:1}, function(err, cls_names){
         student.distinct("section_name", function(err, sect_names){
-            console.log(sect_names)
     res.render('student-attendance', {classes : cls_names, sections : sect_names, /* subjects:subj_name */})
         })
     });
 })
 
-router.post('')
+router.post('/attendance', function(req, res){
+    class_id = req.body.class;
+    section_name = req.body.section;
+    subject_id = req.body.subject;
+    student.find({'class_id':req.body.class, 'section_name':section_name}, function(err, students){
+        console.log(students)
+        res.render('student_attendance_list', { students : students })
+    })
+})
 
 
 router.post('/add', upload.any(), function(req, res, next){

@@ -26,9 +26,14 @@ router.get('/add', isValidUser, function(req, res, next){
 })
 
 router.get('/attendance', isValidUser, function(req, res, next){
-    res.render('teacher-attendance');
+    teacher.find(function(err, result){
+    res.render('teacher_attendance_list',{teachers:result});
+});
 })
 
+router.post('/teacher_attendance_update', function(req, res){
+    console.log(req.body)
+})
 
 
 router.post('/add', upload.any(), function(req, res, next){

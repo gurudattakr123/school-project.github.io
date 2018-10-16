@@ -51,9 +51,11 @@
             <div class="container-fluid">
                 <!-- Start Page Content -->
                 <div class="row">
+                
                     <div class="col-lg-12">
                         <!--if condition apply here-->
                     <div class="card">
+                    <form action="/students/attendance" method="POST">
                             <div class="card-header">
                                 <h4 class="text-white">Select options</h4>
                             </div>
@@ -78,7 +80,7 @@
                                  <select name="section" required>
                                                 <option name="" value="section">Section</option>
                                                 <% for(i = 0; i < sections.length; i++){ %>
-                                                <option value="<%= classes[i].class_id %>"><%= sections[i]%></option>
+                                                <option value="<%= sections[i] %>"><%= sections[i]%></option>
                                                 <% } %> 
                                             </select>
                                  </div>
@@ -89,10 +91,10 @@
                          <div class="col-md-4">
                              <div class="card p-30 card-hover">
                              <div class="custom-select">
-                             <select name="Gender">
-                                 <option name="" value="gender">subject</option>
-                                 <option name="admin" value="male">A</option>
-                                 <option name="operator" value="female">B</option>
+                             <select name="subject">
+                                 <option name="" value="null">subject</option>
+                                 <option name="admin" value="A">A</option>
+                                 <option name="operator" value="B">B</option>
                              </select>
                              </div>
                              </div>
@@ -100,9 +102,9 @@
                           
                           <div class="form-actions" style="position:absolute; top:200px; right:50px;" >
                           <button type="submit" class="btn btn-success"> <i class="fa fa-list"></i> List</button>
-                      </div>
+                        </div>
 
-
+                    </form>
                     </div><br><br><br><br>
                     <div class="info noteStyle">
                     <p><strong>INFO!</strong><ul><li>This page uploads today's attendance only!</li><br><li> For attendance history, goto Reports >  Attendance Reports ><a href="#" title ="click for complete attendance report">student attendance report</a></li></ui></p>
