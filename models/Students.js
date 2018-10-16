@@ -11,8 +11,9 @@ const StudentSchema = mongoose.Schema({
     profile_pic : String,
     roll_number : String,
     extras : String, 
+    class_id: String,
     class_number : String,
-
+    section_name : String,
 //parents
     mother_name : String,
     father_name : String,
@@ -23,6 +24,7 @@ const StudentSchema = mongoose.Schema({
 //admission details
     admission_no : String,
     admission_date: Date,
+    payment_status: String,
     documents : String
 });
 

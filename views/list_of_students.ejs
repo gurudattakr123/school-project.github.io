@@ -17,10 +17,12 @@
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <style>
-
-    
-    </style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -39,11 +41,11 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Class Details</h3> </div>
+                    <h3 class="text-primary">List of students in class <%= students.class_number %></h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Class List</li>
+                        <li class="breadcrumb-item active">Students List</li>
                     </ol>
                 </div>
             </div>
@@ -53,57 +55,50 @@
                 <!-- Start Page Content -->
                 <div class="row">
                     <div class="col-12">
-                    <div class="col-3"><a href="/classes/add" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2"><i class="fa fa-plus"></i> Add class.</a></div>
                         <!--if condition apply here-->
-                    <!-- column 
-                    <div class="col-lg-8">
-                    <% for(i=0; i<classes.length; i++){%>
-                    
-                    <div class="card card-hover">
-                            <div class="card-block">
-
-                     <h2><%= classes[i].class_name %></h2><a href="/classes/sections/add.class=<%= classes[i].class_id %>" class="right-top btn btn-dark btn-outline m-b-1 m-l-1" style="border:none"><i class="fa fa-plus"></i> Add section</a>
-                             <div class="list-group">
-                                <a href="#" class="list-group-item">Section 1</a>
-                                <a href="#" class="list-group-item">Section 1</a>
-                            </div> 
-                        </div>
-                        
-                    </div>
-                <%}%> 
-                    </div>
-                     column -->
-
-                     <div class="table-responsive">
+                        <div class="card">
+                        <div class="card-body">
+                            
+                            <div class="table-responsive">
                                 <table id="myTable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Class Id</th>
-                                            <th>Class Name</th>
-                                            <th>Number of students</th>
-                                            <th>Class Teacher</th>
-                                            
-                                            
+                                            <th>Roll No</th>
+                                            <th>Name</th>
+                                            <th>gender</th>
+                                            <th>Age</th>
+                                            <th>Section</th>
+                                            <th>Admission Number</th>
+                                            <th> Payment Status </th> 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <% for(i=0; i < classes.length; i++){%>
-                                        <tr data-url="/classes/<%= classes[i].class_id %>">
-                                        <td><%= classes[i].class_id %></td>
-                                        <td><%=classes[i].class_name %></td>
-                                        <td><!--<%=classes[i].gender %>--></td>
-                                        <td><%=classes[i].class_teacher %></td>
-                                          
-                                            
+                                    <% for(i=0; i < students.length; i++){%>
+                                        <tr data-url="#">
+                                            <td><%= students[i].roll_number %></td>
+                                            <td><%=students[i].first_name+' '+students[i].last_name %></td>
+                                            <td><%=students[i].gender %></td>
+                                            <td><%=students[i].age %></td>
+                                            <td><%=students[i].section_name %></td>
+                                            <td><%=students[i].admission_no %></td>
+                                            <% if(students[i].payment_status == "done"){%>
+                                            <td><span class="badge badge-success">Done</span></td>
+                                        <% } else { %>
+                                        <td><span class="badge badge-warning">Pending</span></td>
+                                       <% } %>
                                         </tr>
                                     <%}%>
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                        <!-- end of card div -->
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- End PAge Content -->
-            </div>
             </div>
             <!-- End Container fluid  -->
             <!-- footer -->
@@ -114,12 +109,6 @@
     </div>
     <!-- End Wrapper -->
     <!-- All Jquery -->
-    <script>
-    
-    
-
-    </script>
-
     <script src="js/lib/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
@@ -133,8 +122,6 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 
-    
-    
     
     <script src="js/lib/datatables/datatables.min.js"></script>
     <script src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>

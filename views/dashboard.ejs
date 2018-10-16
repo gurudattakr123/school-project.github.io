@@ -242,7 +242,7 @@
                     <div class="col-lg-9">
                         <div class="card">
                             <div class="card-title">
-                                <h4>Recent Orders </h4>
+                                <h4>Students with pending payments</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -251,57 +251,27 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Name</th>
-                                                <th>Product</th>
-                                                <th>quantity</th>
+                                                <th>class</th>
+                                                <th>section</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
                                             <tr>
-                                                <td>
+                                            <% for(var i=0;i<students.length; i++){%>
+                                            <td>
                                                     <div class="round-img">
                                                         <a href=""><img src="images/avatar/4.jpg" alt=""></a>
                                                     </div>
                                                 </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iBook</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/2.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iPhone</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/3.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iMac</span></td>
-                                                <td><span>456 pcs</span></td>
+                                                <td><%= students[i].first_name+' '+students[i].last_name %></td>
+                                                <td><span><%= students[i].class_number %></span></td>
+                                                <td><span><%= students[i].section_name %></span></td>
                                                 <td><span class="badge badge-warning">Pending</span></td>
+                                                <%}%>  
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/4.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iBook</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

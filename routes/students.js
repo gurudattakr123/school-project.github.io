@@ -3,6 +3,7 @@ const router = express.Router();
 const student = require('../models/Students');
 const multer = require('multer');
 const counter = require('../models/Counter');
+const classes = require('../models/Classes')
 
 var upload = multer({storage: multer.diskStorage({
     destination: function (req, file, callback) 
@@ -21,13 +22,22 @@ router.get('/list', isValidUser, function(req, res, next){
 })
 
 router.get('/add', isValidUser, function(req, res, next){
-    res.render('add-student');
+    classes.find({}, {class_name:1, class_id:1}, function(err, cls_names){
+        res.render('add-student',{classes: cls_names});
+    })
 });
 
 
 router.get('/attendance', isValidUser, function(req, res, next){
-    res.render('student-attendance');
+    classes.find({}, {class_name:1, class_id:1}, function(err, cls_names){
+        student.distinct("section_name", function(err, sect_names){
+            console.log(sect_names)
+    res.render('student-attendance', {classes : cls_names, sections : sect_names, /* subjects:subj_name */})
+        })
+    });
 })
+
+router.post('')
 
 
 router.post('/add', upload.any(), function(req, res, next){
@@ -47,6 +57,8 @@ router.post('/add', upload.any(), function(req, res, next){
             counter.updateOne({'student_id':count}, { $set: { "student_id" : (count+1) } }, function(err, result){
                 if(err) throw err;
                 if(result.nModified == 1){
+                    classes.findOne({'class_id': req.body.class}, function(err, num){
+                        class_number = num.class_number;
                     new student({
                         'student_id':student_id,
                         'first_name' : req.body.first_name,
@@ -55,7 +67,8 @@ router.post('/add', upload.any(), function(req, res, next){
                         'gender' : req.body.gender,
                         'dob' : req.body.dob,
                         'blood_group' : req.body.blood_group,
-                        'class_number' : req.body.class,
+                        'class_number' : class_number,
+                        'class_id' : req.body.class,
                         'section_name' : req.body.section,
                         //'profile_pic' : "localhost:3000/uploads/"+req.file[0].filename,
                         'roll_number' : req.body.roll_no,
@@ -73,11 +86,13 @@ router.post('/add', upload.any(), function(req, res, next){
                     })
                     console.log('success');//send toastr success
                     res.redirect('/students/list')
+                })
                 }
                 else{
                     console.log('Failed to update counter');
                     res.redirect(url)
                 }
+            
             })
         });
              

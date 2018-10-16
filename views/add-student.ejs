@@ -141,9 +141,10 @@
                                         <div class="col-sm-6">
                                             <div class="custom-select">
                                             <select name="class" required>
-                                                <option name="" value="gender">Class</option>
-                                                <option name="1" value="one">1</option>
-                                                <option name="2" value="two">2</option>
+                                                <option name="" value="class">Class</option>
+                                                <% for(i = 0; i < classes.length; i++){ %>
+                                                <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
+                                                <% } %> 
                                             </select>
                                             </div>
                                             </div>
@@ -151,7 +152,7 @@
                                     </div>
 
 
-                                    <div class="form-group row">
+                                 <!--   <div class="form-group row">
                                     <label for="web" class="col-sm-3 control-label">Section*</label>
                                     <div class="col-sm-6">
                                         <div class="custom-select" required>
@@ -163,8 +164,18 @@
                                         </div>
                                         </div>
                                         <div class="col-sm-3"><a href="/sections/add" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-1"><i class="fa fa-plus"></i> Add Class.</a></div>
-                                </div>
+                                </div>  -->
                                     
+                                <div class="form-group row">
+                                    <label for="exampleInputEmail3" class="col-sm-3 control-label">Section*</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="section" placeholder="Enter section" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                     <div class="form-group row">
                                     <label for="exampleInputEmail3" class="col-sm-3 control-label">Admission Number*</label>
                                     <div class="col-sm-9">

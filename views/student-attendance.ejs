@@ -62,11 +62,12 @@
                              <div class="col-md-4">
                              <div class="card p-30 card-hover">
                              <div class="custom-select">
-                             <select name="Gender">
-                                 <option name="" value="gender">class</option>
-                                 <option name="admin" value="male">1</option>
-                                 <option name="operator" value="female">2</option>
-                             </select>
+                             <select name="class" required>
+                                                <option name="" value="class">Class</option>
+                                                <% for(i = 0; i < classes.length; i++){ %>
+                                                <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
+                                                <% } %> 
+                                            </select>
                              </div>
                              </div>
                          </div>
@@ -74,11 +75,12 @@
                                  <div class="col-md-4">
                                  <div class="card p-30 card-hover">
                                  <div class="custom-select">
-                                 <select name="Gender">
-                                     <option name="" value="gender">section</option>
-                                     <option name="admin" value="male">A</option>
-                                     <option name="operator" value="female">B</option>
-                                 </select>
+                                 <select name="section" required>
+                                                <option name="" value="section">Section</option>
+                                                <% for(i = 0; i < sections.length; i++){ %>
+                                                <option value="<%= classes[i].class_id %>"><%= sections[i]%></option>
+                                                <% } %> 
+                                            </select>
                                  </div>
                                  </div>
                              </div>
@@ -94,7 +96,13 @@
                              </select>
                              </div>
                              </div>
-                          </div>                 
+                          </div> 
+                          
+                          <div class="form-actions" style="position:absolute; top:200px; right:50px;" >
+                          <button type="submit" class="btn btn-success"> <i class="fa fa-list"></i> List</button>
+                      </div>
+
+
                     </div><br><br><br><br>
                     <div class="info noteStyle">
                     <p><strong>INFO!</strong><ul><li>This page uploads today's attendance only!</li><br><li> For attendance history, goto Reports >  Attendance Reports ><a href="#" title ="click for complete attendance report">student attendance report</a></li></ui></p>

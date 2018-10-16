@@ -5,7 +5,7 @@ const User=require('../models/Users');
 var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
-
+const students = require('../models/Students');
 
 /*login get*/
 router.get('/', function(req, res){
@@ -13,7 +13,9 @@ router.get('/', function(req, res){
 });
 
 router.get('/dashboard',isValidUser, function(req, res, next){
-res.render('dashboard', {req:req});
+  students.find({'payment_status':"pending"}, function(err, students){
+    res.render('dashboard', {req:req, students:students});
+  })
 });
 
 /* login post */
