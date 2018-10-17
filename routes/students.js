@@ -41,7 +41,6 @@ router.post('/attendance', function(req, res){
     section_name = req.body.section;
     subject_id = req.body.subject;
     student.find({'class_id':req.body.class, 'section_name':section_name}, function(err, students){
-        console.log(students)
         res.render('student_attendance_list', { students : students })
     })
 })

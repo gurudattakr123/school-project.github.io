@@ -32,7 +32,11 @@ router.get('/attendance', isValidUser, function(req, res, next){
 })
 
 router.post('/teacher_attendance_update', function(req, res){
-    console.log(req.body)
+    array = [];
+    for(var k in req.body){
+        console.log(k.value);
+    }
+    console.log(array)
 })
 
 
