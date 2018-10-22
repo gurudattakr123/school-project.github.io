@@ -5,6 +5,7 @@ const multer = require('multer');
 const counter = require('../models/Counter');
 
 
+
 var upload = multer({storage: multer.diskStorage({
     destination: function (req, file, callback) 
     { callback(null, './images/uploads');},
@@ -31,12 +32,17 @@ router.get('/attendance', isValidUser, function(req, res, next){
 });
 })
 
-router.post('/teacher_attendance_update', function(req, res){
-    array = [];
-    for(var k in req.body){
-        console.log(k.value);
-    }
+router.post('/attendance', function(req, res){
+    array=[];
+    array=req.body;
+    delete array.myTable_length;
     console.log(array)
+let today = new Date().toLocaleDateString()
+    console.log(array)
+    for(var k in array){
+        console.log(k)
+        //teacher.findOneAndUpdate({'teacher_id':k}, {'attendance.date':today, 'attendance.status':''});
+    }
 })
 
 
