@@ -36,13 +36,16 @@ router.post('/attendance', function(req, res){
     array=[];
     array=req.body;
     delete array.myTable_length;
-    console.log(array)
-let today = new Date().toLocaleDateString()
+    let today = new Date().toLocaleDateString()
     console.log(array)
     for(var k in array){
-        console.log(k)
-        //teacher.findOneAndUpdate({'teacher_id':k}, {'attendance.date':today, 'attendance.status':''});
+        console.log(k, array[k])
+        teacher.findOne({'teacher_id':k}, function(err, tchr){
+            var at = {Date: today, status: array[k]}
+            console.log(at)
+        });
     }
+  
 })
 
 
