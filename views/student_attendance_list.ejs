@@ -59,7 +59,7 @@
                         <div class="card">
                         <% if(students[0] == null || students[0] == undefined) {%> 
                         <div class="card-header">
-                            <h4 class="text-white">No students found</h4>
+                            <h4 class="text-white">Students record not found</h4>
                              </div>
                         <%} else {%>
                         <div class="card-header">
@@ -84,8 +84,8 @@
                                             <td><%= students[i].roll_number %></td>
                                             <td><%=students[i].first_name+' '+students[i].last_name %></td>
                                             
-                                            <td><label class="radio-inline"><input type="radio" name="p" checked>Present</label>
-                                            <label class="radio-inline"><input type="radio" name="ab">Absent</label></td>
+                                            <td><label class="radio-inline"><input type="radio" value="present" name="<%= students[i].student_id %>" checked>Present</label>
+                                            <label class="radio-inline"><input type="radio" value="absent" name="<%= students[i].student_id %>">Absent</label></td>
                                         </tr>
                                     <%}%>
                                     </tbody>

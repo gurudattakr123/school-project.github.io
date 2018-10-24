@@ -37,15 +37,18 @@ router.post('/attendance', function(req, res){
     array=req.body;
     delete array.myTable_length;
     let today = new Date().toLocaleDateString()
-    console.log(array)
     for(var k in array){
-        console.log(k, array[k])
-        teacher.findOne({'teacher_id':k}, function(err, tchr){
-            var at = {Date: today, status: array[k]}
-            console.log(at)
-        });
+        // teacher.findOne({'teacher_id':k}, function(err, tchr){
+        //     var at = {Date: today, status: array[k]}
+        //     console.log(at)
+        // });
+        let att = { date: today, status: array[k]}
+        teacher.updateOne({'teacher_id':k}, {$push:{attendance:att}}, {new:true})
+        .then(() => console.log("Success"))
+        .catch(err => console.log(err));
     }
-  
+    console.log('updated message to be displayed'); //update message to be displayed using toastr
+    res.redirect('/teachers/list')
 })
 
 

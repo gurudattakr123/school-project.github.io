@@ -17,12 +17,6 @@
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-    <!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -45,7 +39,7 @@
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Teachers List</li>
+                        <li class="breadcrumb-item active">Students attendance Update</li>
                     </ol>
                 </div>
             </div>
@@ -55,11 +49,9 @@
                 <!-- Start Page Content -->
                 <div class="row">
                     <div class="col-12">
-                    <div class="col-3"><a href="/teachers/add" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2"><i class="fa fa-plus"></i> Add Teacher.</a></div>
                         <!--if condition apply here-->
                         <div class="card">
                         <div class="card-body">
-                            
                             <div class="table-responsive">
                             <form method="POST" action="/teachers/attendance">
                                 <table id="myTable" class="table table-bordered table-striped">
@@ -69,7 +61,7 @@
                                             <th>Name </th>
                                             <th>phone Number</th>
                                             <th>Email Id</th>
-                                            <th> Attendance </th>
+                                            <th>Attendance </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,8 +71,8 @@
                                         <td><%=teachers[i].first_name+' '+teachers[i].last_name %></td>
                                         <td><%=teachers[i].phone_num %></td>
                                         <td><%=teachers[i].email %></td>
-                                        <td><label class="radio-inline"><input type="radio" value="p" name="<%= teachers[i].teacher_id %>" checked>Present</label> 
-                                        <label class="radio-inline"><input type="radio" value="ab" name="<%= teachers[i].teacher_id %>">Absent</label></td>
+                                        <td><label class="radio-inline"><input type="radio" value="present" name="<%= teachers[i].teacher_id %>" checked>Present</label> 
+                                        <label class="radio-inline"><input type="radio" value="absent" name="<%= teachers[i].teacher_id %>">Absent</label></td>
                                     </tr>
                                 <%}%>
                                     </tbody>

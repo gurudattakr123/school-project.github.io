@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const StudentSchema = mongoose.Schema({
+const AttendanceSchema = new Schema({ 
+    date: Date,
+    status: String,
+    _id:false
+  });
+
+
+const StudentSchema = new Schema({
     student_id : String,
     first_name : String,
     last_name : String,
@@ -25,7 +33,9 @@ const StudentSchema = mongoose.Schema({
     admission_no : String,
     admission_date: Date,
     payment_status: String,
-    documents : String
+    documents : String,
+//attendance
+    attendance:[AttendanceSchema]
 });
 
 

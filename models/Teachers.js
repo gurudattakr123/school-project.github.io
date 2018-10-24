@@ -2,12 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-var TeacherattendanceSchema = new Schema({
-    date:Date,
-    status: String
+const AttendanceSchema = new Schema({ 
+  date: Date,
+  status: String,
+  _id:false
 });
 
-var TeacherSchema = new Schema({
+
+const TeacherSchema = new Schema({
     teacher_id : String,
     first_name : String,
     last_name : String,
@@ -21,13 +23,10 @@ var TeacherSchema = new Schema({
     class_id : String,
     doj : String, 
     subjects : Array,
-    attendance : [TeacherattendanceSchema],
+    attendance:[AttendanceSchema],
     username: String,
     password : String
 });
-
-
-
 
 
 TeacherSchema.methods.hashPassword = function (password) {
