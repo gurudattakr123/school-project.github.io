@@ -14,6 +14,21 @@ var upload = multer({storage: multer.diskStorage({
 })
 })
 
+function todayDate(){
+    var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10) {
+    dd = '0'+dd
+} 
+if(mm<10) {
+    mm = '0'+mm
+} 
+today = mm + '/' + dd + '/' + yyyy;
+return today;
+}
+
 router.get('/list', isValidUser, function(req, res, next){
     student.find(function(err, result){
         res.render('students_list', {students:result});
@@ -45,6 +60,19 @@ router.post('/attendance', function(req, res){
     })
 })
 
+
+router.post('/student_attendance_update', function(req, res){
+    delete req.body.myTable_length;
+    let today = todayDate();
+    for(var k in req.body){
+        let att = { date: today, status: req.body[k]}
+        student.updateOne({'student_id':k}, {$push:{attendance:att}}, {new:true})
+        .then(() => console.log("Success"))
+        .catch(err => console.log(err));
+    }
+    console.log('updated message to be displayed'); //update message to be displayed using toastr
+    res.redirect('/students/list')
+})
 
 router.post('/add', upload.any(), function(req, res, next){
     var url = req.originalUrl;
