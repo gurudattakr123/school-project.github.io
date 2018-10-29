@@ -7,14 +7,16 @@ const Class = require('../models/Classes');
 
 router.get('/list', isValidUser, function(req, res, next){
     Class.find(function(err, result){
-        tchrArray = new Array();
+        var tchrArray = [];
         result.forEach(element => {
-            teacher.find({'teacher_id':element.class_teacher}, function(err, tchr){
-                tchrArray.push(tchr[0].first_name+' '+tchr[0].last_name)
+            teacher.findOne({'teacher_id':element.class_teacher},{'first_name':1, 'last_name':1, '_id':0}, function(err, tchr){
+                console.log(tchr)
+                tchrArray.push(tchr)  // incomplete
+                
             })    
         });
-        console.log(tchrArray)
-        res.render('class_list', {classes : result});
+        
+        res.render('class_list', {classes : result, teachers:tchrArray});
     })
 });
 

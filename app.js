@@ -19,6 +19,7 @@ let teachers = require('./routes/teachers');
 let students = require('./routes/students');
 let others = require('./routes/others');
 let classes = require('./routes/classes');
+let exams = require('./routes/exams')
 let subjects = require('./routes/subjects');
 
 
@@ -41,6 +42,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 /* view engine */
 app.use('/subjects',express.static(path.join(__dirname, '/views')));
+app.use('/exams',express.static(path.join(__dirname, '/views')));
 app.use('/classes/sections',express.static(path.join(__dirname, '/views')));
 app.use('/classes',express.static(path.join(__dirname, '/views')));
 app.use('/others',express.static(path.join(__dirname, '/views')));
@@ -90,6 +92,7 @@ app.use('/teachers', teachers);
 app.use('/students', students);
 app.use('/others', others);
 app.use('/classes', classes);
+app.use('/exams', exams);
 app.use('/subjects', subjects);
 
 
