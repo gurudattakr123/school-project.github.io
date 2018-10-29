@@ -39,11 +39,11 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Class Details</h3> </div>
+                    <h3 class="text-primary">Exam Details</h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Exams List</li>
+                        <li class="breadcrumb-item active">Exam Types</li>
                     </ol>
                 </div>
             </div>
@@ -52,28 +52,57 @@
             <div class="container-fluid">
                 <!-- Start Page Content -->
                 <div class="row">
-                    <div class="col-12">
-                    <div class="col-3"><a href="/exams/add" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2"><i class="fa fa-plus"></i> Add Type of Exam.</a></div>
-                        <!--if condition apply here-->
-                     <div class="table-responsive">
-                                <table id="myTable" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Exam Id</th>
-                                            <th>Exam Type</th>
-                                            <th>Details</th>
-                                            <th>Scheduled or not?</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                <div class="col-lg-12">
+                <div class="col-3"><button style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2 hideButton"><i class="fa fa-plus"></i> Add Exam Type.</button></div>
+                    <!--if condition apply here-->
+                    <div class="row">
+                <div class="col-lg-12">
+                    <div class="card showForm" style="display:none">
+                        <div class="card-body"> 
+                        <!-- form -->
+                        <div class="col-sm-8">
+                                <form class="form-horizontal p-t-20" action="/exams/add" method="POST">
+                                    <div class="form-group row">
+                                        <label for="exampleInputuname3" class="col-sm-3 control-label">Name of the Exam*</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="exampleInputuname3" placeholder="Name">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                    <button type="button" class="btn btn-inverse hideForm">Cancel</button>
+                                </div>
+                                
+                                </form>
+                                </div>
+                        <!-- end form -->
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="table-responsive">
+                        <table id="myTable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Class Id</th>
+                                    <th>Class Name</th>
+                                    <th>Number of students</th>
+                                    <th>Class Teacher</th>
                                     
-                                    </tbody>
-                                </table>
-                            </div>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <!-- End PAge Content -->
+                    <!-- end of card div -->
+                        </div>
+                    </div>
             </div>
             </div>
             <!-- End Container fluid  -->

@@ -41,7 +41,12 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">List of students in class <%= students[0].class_number %></h3> </div>
+                <% if(students[0] != undefined){ %>}
+                    <h3 class="text-primary">List of students in class <%= students[0].class_number %></h3>
+                    <% } else { %>
+                        <h3 class="text-primary">List of students <h3> 
+                    <% } %>
+                    </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
