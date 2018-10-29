@@ -16,9 +16,8 @@ const schedule = new Schema({
 
 const ExamSchema=new Schema({
     exam_type: String,
-    exam_id: String,
+    exam_info: String,
     schedules:[schedule],
-    _id: false
 },
 { versionKey: false }
 

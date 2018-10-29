@@ -6,15 +6,34 @@ const Class = require('../models/Classes');
 const exam = require('../models/Exams');
 
 router.get('/list', isValidUser, function(req, res){
-    res.render('exam_list');
+    exam.find({}, function(err, exam){
+        res.render('exam_list',{exams:exam})
+    })
 });
 
 
 router.post('/add', isValidUser, function(req, res, next){
-    exam.find({},{'_id':0, 'exam_type':1},function(err, result){ 
+    var url = req.originalUrl;
+    exam.findOne({'exam_type':req.body.exam_name},{'_id':0, 'exam_type':1},function(err, result){ 
          if(err) throw err;
-    res.render('add-exam', {exam_type:result});
-    });
+         if(result != null){
+            console.log('already registered message to be displayed'); // already registered message to be displayed
+            res.redirect(url);
+        }else{
+            new exam({
+                'exam_type':req.body.exam_name,
+                'exam_info':req.body.info
+            }).save(function(err){
+                if(err) throw err;
+            })
+            console.log('success');//send toastr success
+            res.redirect('/exams/list');
+        }
+    })
+})
+
+router.get('/schedule', isValidUser, function(req, res){
+    res.render('schedule-exam');
 });
 
 

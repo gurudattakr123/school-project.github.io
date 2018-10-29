@@ -66,10 +66,16 @@
                                         <label for="exampleInputuname3" class="col-sm-3 control-label">Name of the Exam*</label>
                                         <div class="col-sm-9">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="exampleInputuname3" placeholder="Name">
+                                                <input type="text" class="form-control" name="exam_name" placeholder="Name">
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                            <label for="inputPassword4" class="col-sm-3 control-label">Note*</label>
+                                            <div class="col-sm-9">
+                                            <textarea placeholder="Details of this Exam type." rows="5" name = "info" class="address"></textarea>                                            </div>
+                                        </div>
 
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
@@ -87,16 +93,20 @@
                         <table id="myTable" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Class Id</th>
-                                    <th>Class Name</th>
-                                    <th>Number of students</th>
-                                    <th>Class Teacher</th>
-                                    
-                                    
+                                   
+                                    <th>Exam Type</th>
+                                    <th> Details </th>
+                                    <th> Action </th>
                                 </tr>
                             </thead>
                             <tbody>
-                            
+                            <% for(i=0; i < exams.length; i++){%>
+                            <tr data-url="#">
+                            <td><%= exams[i].exam_type %></td>
+                            <td><%= exams[i].exam_info %></td>
+                            <td></td>
+                            </tr>
+                        <%}%>
                             </tbody>
                         </table>
                     </div>
