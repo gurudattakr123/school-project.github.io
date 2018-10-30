@@ -33,7 +33,12 @@ router.post('/add', isValidUser, function(req, res, next){
 })
 
 router.get('/schedule', isValidUser, function(req, res){
-    res.render('schedule-exam');
+    exam.find({},function(err, exam){
+        Class.find({}, function(err, classes){
+            res.render('schedule-exam',{examType:exam, classes:classes});
+        })
+        
+    });
 });
 
 
