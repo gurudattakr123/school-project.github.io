@@ -59,11 +59,8 @@
                             <div class="card-body"> 
                             <!-- form -->
                             
-                            
-                            
                         <form class="form-horizontal p-t-20" action="/teachers/add" method="post">
 
-                            
                         <div class="row">
 
                             <div class="col-md-6">
@@ -87,16 +84,37 @@
                                                 <% } %> 
                                             </select>
                             </div>
-                            </div>
-                        
-                            <div class="col-sm-3">
+                            </div><br><br><br>
+
+                            <div class="optionBox">
+                                <div class="form-group row block">
+                                    <div class="col-sm-3">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="class_name" placeholder="Subject Name">
-                                        </div><span class="close">X</span>
+                                            <input type="text" class="form-control" name = "subject_name" placeholder="Subject Name">
+                                        </div>
                                     </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" name = "dot" placeholder="Date">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <input type="time" class="form-control" name = "start_time" placeholder="Start Time">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <input type="time" class="form-control" name = "start_time" placeholder="Start Time">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="col-3"><a style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2"><i class="fa fa-plus"></i> Add Subject schedule.</a></div>
+                            <div class="col-3 block"><span style="border-color:transparent; display: inline-block; cursor: pointer; text-decoration: underline;" class="m-b-1 m-l-2 add"><i class="fa fa-plus"></i> Add Subject schedule.</span></div>
  
                         </form>
                                     
@@ -109,6 +127,7 @@
                     </div>
                 </div>
                 <!-- End PAge Content -->
+            </div>
             </div>
             </div>
             <!-- End Container fluid  -->
