@@ -13,8 +13,11 @@ router.get('/', function(req, res){
 });
 
 router.get('/dashboard',isValidUser, function(req, res, next){
-  students.find({'payment_status':"pending"}, function(err, students){
-    res.render('dashboard', {req:req, students:students});
+  st_count = students.distinct('student_id').length;
+    console.log(st_count)
+  students.find({'payment_status':"pending"}, function(err, student){
+    
+    res.render('dashboard', {req:req, students:student, num_of_st:st_count});
   })
 });
 

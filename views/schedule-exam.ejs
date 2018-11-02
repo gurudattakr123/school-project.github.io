@@ -17,7 +17,16 @@
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    
+    <style>
+.close {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    text-align:center
+}
+</style>
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -86,7 +95,7 @@
                             </div>
                             </div><br><br><br>
 
-                            <div class="optionBox">
+                            <div class="col-sm-12 optionBox">
                                 <div class="form-group row block">
                                     <div class="col-sm-3">
                                         <div class="input-group">
@@ -94,21 +103,21 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="input-group">
                                             <input type="date" class="form-control" name = "dot" placeholder="Date">
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <div class="input-group">
                                             <input type="time" class="form-control" name = "start_time" placeholder="Start Time">
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <div class="input-group">
-                                            <input type="time" class="form-control" name = "start_time" placeholder="Start Time">
+                                            <input type="time" class="form-control" name = "end_time" placeholder="End time">
                                         </div>
                                     </div>
                                 </div>
@@ -121,12 +130,13 @@
                             <!-- end form -->
                             </div>
                         </div>
-                        <div class="warning noteStyle">
-                    <p><strong>Warning!</strong> Some text...</p>
-                    </div>
+                        
                     </div>
                 </div>
                 <!-- End PAge Content -->
+                <div class="warning noteStyle col-sm-12">
+                    <p><strong>Warning!</strong> Some text...</p>
+                    </div>
             </div>
             </div>
             </div>
@@ -141,13 +151,7 @@
     <!-- All Jquery -->
     <script type="text/javascript">
 
-    function getAge(){
-        var dob = document.getElementById('date').value;
-        dob = new Date(dob);
-        var today = new Date();
-        var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
-        document.getElementById('age').value=age;
-    }
+   
     
     </script>
     <script src="js/lib/jquery/jquery.min.js"></script>
