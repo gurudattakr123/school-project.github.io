@@ -3,7 +3,7 @@ const router = express.Router();
 const teacher = require('../models/Teachers');
 const student = require('../models/Students');
 const Class = require('../models/Classes');
-
+const section = require('../models/Sections')
 
 router.get('/list', isValidUser, function(req, res, next){
     Class.find(function(err, result){
@@ -29,8 +29,10 @@ router.get('/add', isValidUser, function(req, res, next){
 
 router.get('/:class_id', isValidUser, function(req, res){
     student.find({'class_id': req.params.class_id}, function(err, students){
-        res.render('list_of_students',{students:students, class_id:req.params.class_id})
+        section.distinct('section_name',{'class_id':req.params.class_id}, function(err, section){
+        res.render('list_of_students',{students:students, class_id:req.params.class_id, sections:section})
     })
+})
 })
 
 
@@ -71,41 +73,32 @@ router.get('/sections/add.for=:class_id', isValidUser, function(req, res, next){
 
 
 router.post('/sections/add.for=:class_id', function(req, res){
+    console.log(req.body)
     var url = req.originalUrl;
     class_id = req.params.class_id;
     section_name = req.body.section_name;
-    class_teacher_id = req.body.teacher_id;
-    console.log(req.body);
-    let sec = {section_name: req.body.section_name, class_teacher: req.body.teacher_id}
-    Class.findOne({ sections: { $elemMatch: { 'sections_name': req.body.section_name } } }, function(err, cb){
-        if(cb == null){
-            console.log('cd'+cb)
-            Class.update({'class_id':req.params.class_id},{$push:{sections:sec}});
-        } else{
-            console.log(cb)
-            console.log('Already registered.')
+    class_teacher_id = req.body.class_teacher;
+    var section_id = class_id+section_name;
+    console.log(class_teacher_id, req.params.class_id, section_id)
+    section.findOne({$and:[{'section_name': section_name, 'section_id' : section_id}]}, function(err, result){
+        if(err) throw err;
+        if(result != null){
+            console.log('already registered message to be displayed'); // already registered message to be displayed
+            res.redirect(url);
+        }else{
+            
+            new section({
+                'class_id' : class_id,
+                'section_id' : section_id,
+                'section_name' : section_name,
+                'class_teacher' : class_teacher_id
+            }).save(function(err){
+                if(err) throw err;
+            })
+            console.log('success');//send toastr success
+            res.redirect('/classes/'+class_id);
         }
     })
-     //Class.update({'class_id':req.params.class_id},{$push:{sections:sec}}
-    //         if(err) throw err;
-    //         if(result != null){
-    //             console.log('already registered message to be displayed'); // already registered message to be displayed
-    //             res.redirect(url);
-    //         }else{
-    //             new section({
-    //                 'class_id' : class_id,
-    //                 'section_id': class_id+'_sec_'+section_name,
-    //                 'section_name' : section_name,
-    //                 'class_teacher' : class_teacher_id
-    //             }).save(function(err){
-    //                 if(err) throw err;
-    //             })
-    //             console.log('success');//send toastr success
-    //             res.redirect('/classes/list');
-    //         }
-    //     if(err) throw err;
-
-     //)
 })
 
 function isValidUser(req,res,next){
