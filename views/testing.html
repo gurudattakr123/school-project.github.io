@@ -1,27 +1,47 @@
 <html>
+    <head><style>
+    #allSubjects{
+        -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    background-color: white;
+    background-color: -moz-field;
+    border: 1px solid darkgray;
+    box-shadow: 1px 1px 1px 0 lightgray inset;  
+    font: -moz-field;
+    font: -webkit-small-control;
+    margin-top: 5px;
+    padding: 2px 3px;
+    width: 398px; 
+    }
+    </style></head>
 <body>
-<form id="form1">
+<form>
 How many subjects are there?:
-<input type="number" placeholder="No of Subjects" onblur="placeholder"/></br></br>
+<input type="number" id="num" placeholder="No of Subjects" onblur="enterSubjects();"/></br></br>
 Enter subject Names:
-<input type="text" id="subject" placeholder="insert 10"/><br><br>
+<input type="text" id="subject" /><br><br>
 <input type="button" onclick="enterSubjects()" value="Add!"/>
 </form>
 <div id="allSubjects"></div>
 </body>
-<script>
-
+<script type="text/javascript">
 
 function enterSubjects() {
+    var num = document.getElementById('num').value;
     var input = document.getElementById('subject');
-    if (input.value && subjects.length < 10) {
+    input.placeholder = 'Enter ' + num + ' subjects';
+    if (input.value && subjects.length < num) {
         subjects.push(input.value);
         document.getElementById('allSubjects').innerHTML = subjects.join(', ');
         input.value = '';
-        input.placeholder = 'insert ' + (10 - subjects.length);
+        if(subjects.length != num){
+            input.placeholder = 'insert ' + (num - subjects.length) + 'subjects';
+        }else{
+            input.placeholder = 'Done';
+            input.readOnly = true;
+        }
     }
-    if (subjects.length === 10) {
-        input.placeholder = 'ready';
+    if (subjects.length === num) {
         document.getElementById('allSubjects').innerHTML = subjects.join(', ');
     }
 }
