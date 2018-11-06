@@ -1,0 +1,30 @@
+<html>
+<body>
+<form id="form1">
+How many subjects are there?:
+<input type="number" placeholder="No of Subjects" onblur="placeholder"/></br></br>
+Enter subject Names:
+<input type="text" id="subject" placeholder="insert 10"/><br><br>
+<input type="button" onclick="enterSubjects()" value="Add!"/>
+</form>
+<div id="allSubjects"></div>
+</body>
+<script>
+
+
+function enterSubjects() {
+    var input = document.getElementById('subject');
+    if (input.value && subjects.length < 10) {
+        subjects.push(input.value);
+        document.getElementById('allSubjects').innerHTML = subjects.join(', ');
+        input.value = '';
+        input.placeholder = 'insert ' + (10 - subjects.length);
+    }
+    if (subjects.length === 10) {
+        input.placeholder = 'ready';
+        document.getElementById('allSubjects').innerHTML = subjects.join(', ');
+    }
+}
+var subjects = [];
+</script>
+</html>
