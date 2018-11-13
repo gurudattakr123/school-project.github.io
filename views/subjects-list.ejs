@@ -64,12 +64,28 @@
                             <div class="card-body"> 
                             <!-- form -->
                             <div class="col-sm-8">
-                                    <form class="form-horizontal p-t-20">
+                                    <form class="form-horizontal p-t-20" method="POST" action="/subjects/update_subjects">
+                                    
+                                    
+                                    <div class="form-group row">
+                                            <label for="exampleInputuname3" class="col-sm-3 control-label">Select Class*</label>
+                                            <div class="col-sm-9">
+                                            <div class="custom-select">
+                                            <select name="class" required>
+                                                                <option name="" value="class">Class</option>
+                                                                <% for(i = 0; i < classes.length; i++){ %>
+                                                                <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
+                                                                <% } %> 
+                                                            </select>
+                                            </div>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label for="exampleInputuname3" class="col-sm-3 control-label">Name of the subject*</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
-                                                <input type="text" value="" data-role="tagsinput" placeholder="Enter Subject Names (You can enter multiple subjects here)" class="form-control" />
+                                                <input type="text" value="" data-role="tagsinput" multiple name="subjects" placeholder="Enter Subject Names (You can enter multiple subjects here)" class="form-control" />
                                                 </div>
                                             </div>
                                         </div>
@@ -81,14 +97,20 @@
                                     
                                     </form>
                                     </div>
+                                    
                             <!-- end form -->
+                            </div> <br><br>
+                            <div class="info noteStyle">
+                            <p><strong>INFO!</strong><ul><li>Multiple subjects can be entered here!</li><br><li>Enter all the subjects at a time. </li></ul></p>
                             </div>
                             </div>
+                            
                             </div>
                             </div>
-                        
+                            
                         <!-- end of card div -->
                             </div>
+
                         </div>
                     </div>
                 </div>
