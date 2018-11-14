@@ -6,6 +6,8 @@ var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 const students = require('../models/Students');
+const teacher = require('../models/Teachers')
+const Class = require('../models/Classes')
 
 /*login get*/
 router.get('/', function(req, res){
@@ -13,12 +15,19 @@ router.get('/', function(req, res){
 });
 
 router.get('/dashboard',isValidUser, function(req, res, next){
-  st_count = students.distinct('student_id').length;
-    console.log(st_count)
-  students.find({'payment_status':"pending"}, function(err, student){
-    
-    res.render('dashboard', {req:req, students:student, num_of_st:st_count});
+  students.distinct('student_id').exec(function(err1, st_count){
+    if(err1) throw err1;
+    teacher.distinct('teacher_id').exec(function(err2, tchr_count){
+      if(err2) throw err2;
+      Class.distinct('class_id').exec(function(err3, cls_count){
+        if(err3) throw err3;
+    students.find({'payment_status':"pending"}, function(err4, student){
+      if(err4) throw err4;
+      res.render('dashboard', {req:req, students:student, num_of_st:st_count.length, num_of_tchr:tchr_count.length, num_of_cls:cls_count.length});
+     })
+    })
   })
+})
 });
 
 /* login post */
