@@ -6,4 +6,4 @@ Running procedure in localhost..
  4. Run command -> nodemon
  5. open browser-> enter url -> localhost:5000
  6. login credential -> email: gurudattakr123@gmail.com
- 						pass: 123
+						pass: 123
