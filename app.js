@@ -10,7 +10,6 @@ const config = require('./config/database');
 var flash = require('connect-flash');
 require('./config/passport');
 const MongoStore = require('connect-mongo')(session);
-var flash = require('connect-flash');
 var toastr = require('express-toastr');
 
 /* import routes*/

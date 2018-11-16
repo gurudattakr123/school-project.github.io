@@ -8,10 +8,10 @@ var nodemailer = require('nodemailer');
 const students = require('../models/Students');
 const teacher = require('../models/Teachers')
 const Class = require('../models/Classes')
-
+const toastr = require('toastr')
 /*login get*/
 router.get('/', function(req, res){
-  res.render('login',{req:req});
+  res.render('login',{req:req.toastr.error});
 });
 
 router.get('/dashboard',isValidUser, function(req, res, next){
@@ -23,7 +23,8 @@ router.get('/dashboard',isValidUser, function(req, res, next){
         if(err3) throw err3;
     students.find({'payment_status':"pending"}, function(err4, student){
       if(err4) throw err4;
-      res.render('dashboard', {req:req, students:student, num_of_st:st_count.length, num_of_tchr:tchr_count.length, num_of_cls:cls_count.length});
+      console.log(req.toastr)
+      res.render('dashboard', {toasts:req.toastr.success, students:student, num_of_st:st_count.length, num_of_tchr:tchr_count.length, num_of_cls:cls_count.length});
      })
     })
   })
@@ -41,8 +42,10 @@ router.post('/login', function(req, res, next) {
       return res.redirect('/login');
     }
     req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      req.toastr.success('Welcome!')
+      if (err) { 
+        return next(err); 
+      }
+      req.toastr.success('Signed in.');
       return res.redirect('/dashboard');
     });
   })(req, res, next);
