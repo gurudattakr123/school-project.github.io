@@ -60,9 +60,7 @@ router.post('/add', upload.any(), function(req, res, next){
          else{
             counter.findOne({},{'teacher_id':1},function(err, result){
             if(err) throw err;
-            console.log(result)
             count = result.teacher_id;
-            console.log(count)
             teacher_id = "tchr_"+(count + 1);
             console.log(req.body);
             counter.updateOne({'teacher_id':count}, { $set: { "teacher_id" : (count+1) } }, function(err, result){
