@@ -11,7 +11,8 @@ const Class = require('../models/Classes')
 const toastr = require('toastr')
 /*login get*/
 router.get('/', function(req, res){
-  res.render('login',{req:req.toastr.error});
+
+  res.render('login',{toasts:req.toastr.error});
 });
 
 router.get('/dashboard',isValidUser, function(req, res, next){
@@ -23,7 +24,7 @@ router.get('/dashboard',isValidUser, function(req, res, next){
         if(err3) throw err3;
     students.find({'payment_status':"pending"}, function(err4, student){
       if(err4) throw err4;
-      console.log(req.toastr)
+      console.log(req.toastr.success)
       res.render('dashboard', {toasts:req.toastr.success, students:student, num_of_st:st_count.length, num_of_tchr:tchr_count.length, num_of_cls:cls_count.length});
      })
     })
@@ -39,7 +40,7 @@ router.post('/login', function(req, res, next) {
     }
     if (!user) {
       req.toastr.error('Invalid credentials.');
-      return res.redirect('/login');
+      return res.redirect('/');
     }
     req.logIn(user, function(err) {
       if (err) { 

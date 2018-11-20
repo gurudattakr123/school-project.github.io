@@ -157,22 +157,22 @@
                                         </div>
                                         </div>
                                         </div>
-                                        
+                                    
 
-                                        <div class="form-group row">
-                                        <label for="web" class="col-sm-3 control-label">Subject Specialization*</label>
-                                        <div class="col-sm-9">
-                                            <div class="custom-select">
-                                            <select name="subjects">
-                                                <option name="" value="gender">Subjects</option> 
-                                                <option name="english" value="english">english</option>
-                                                <option name="kannada" value="kannada">kannada</option>
-                                                <option name="ok" value="ok">ok</option>
-                                            </select>
-                                            </div>
+                                    <div class="form-group row">
+                                    <label for="web" class="col-sm-3 control-label">Subject Specialization*</label>
+                                    <div class="col-sm-6">
+                                        <div class="custom-select">
+                                        <select name="class" required>
+                                            <option name="" value="class">Class</option>
+                                            <% for(i = 0; i < classes.length; i++){ %>
+                                            <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
+                                            <% } %> 
+                                        </select>
                                         </div>
-                                    </div>
-
+                                        </div>
+                                        <div class="col-sm-3"><a href="/classes/add" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-1"><i class="fa fa-plus"></i> Add Class.</a></div>
+                                </div>
                                     <!-- add subjects first, id will be set
                                    assign subject_id to teachers subject_id 
                                      name field should be teacher[i].subject_id 
