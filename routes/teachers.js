@@ -23,7 +23,7 @@ router.get('/list', isValidUser, function(req, res, next){
 })
 
 router.get('/add', isValidUser, function(req, res, next){
-    res.render('add-teacher');
+    res.render('add-teacher', {subjects:result});
 })
 
 router.get('/attendance', isValidUser, function(req, res, next){

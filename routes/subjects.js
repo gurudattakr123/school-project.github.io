@@ -76,12 +76,23 @@ router.post('/update_subjects', function (req, res, next) {
                 subject.updateOne({ 'class_id': class_id }, { $push: { subjects: sub } }, async function (err, updated) {
                     if (updated.nModified == 1) {
                         console.log('updated message')
-                        unique_subjects.findOne({'subject_id':1}, function(er, cbb){console.log(cbb)})
                            sub.forEach(ele => {
-                            counter.findOne({'subject_id':1}, function(err, idNo){
-                                    
+                            counter.findOne({},{'subject_id':1}, function(err, idNo){
+                                if(err) throw err;
+                                count = idNo.subject_id;
+                                subject_id = "sub_"+(count + 1);
+                                counter.updateOne({'subject_id':count}, { $set: { "subject_id" : (count+1) } }, function(err, reslt){
+                                    if(err) throw err;
+                                    if(reslt.nModified == 1){
+                                          // check elemMatch
+                                       }
+                                    }).save(function(err){
+                                        if(err) throw err;
+                                        })
+                                            console.log('success');//send toastr success
+                                            res.redirect('/subjects/list')
                          });
-                         });
+                      });
                     }
                 })
             })
