@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const AttendanceSchema = new Schema({ 
     date: Date,
+    subject: String, 
     status: String,
     _id:false
   });

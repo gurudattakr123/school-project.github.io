@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
-var mongoose=require('mongoose');
+var mongoose = require('mongoose');
 counter = require('../models/Counter');
 const classes = require('../models/Classes');
 const subject = require('../models/Subjects');
+const unique_subjects = require('../models/Subjects');
 
-
-router.get('/list', isValidUser, function(req, res, next){
-    classes.find({}, {class_name:1, class_id:1}, function(err, cls_names){
-        res.render('subjects-list',{classes: cls_names});
+router.get('/list', isValidUser, function (req, res, next) {
+    classes.find({}, { class_name: 1, class_id: 1 }, function (err, cls_names) {
+        res.render('subjects-list', { classes: cls_names });
     })
 })
 
-router.get('/add', isValidUser, function(req, res, next){
+router.get('/add', isValidUser, function (req, res, next) {
     res.render('add-subject');
 })
 
@@ -64,43 +64,41 @@ router.get('/add', isValidUser, function(req, res, next){
 // }) 
 // })
 
-router.post('/update_subjects', function(req, res, next){
+router.post('/update_subjects', function (req, res, next) {
     var class_id = req.body.class;
     var sub = req.body.subjects;
-    subject.findOne({'class_id':class_id}, function(err, result){
-        console.log('1')
-           if (err) throw err;
-           if(result == null){ 
-            console.log('2')
-
-         new subject({'_id': new mongoose.Types.ObjectId, 'class_id':class_id }).save(function(err){
-            console.log('3')
-
-                if(err) console.log(err.message) 
-               subject.updateOne({'class_id':class_id}, {$push:{subjects:sub}}, function(err, updated){
-                console.log('4')
-
-                    if(updated.nModified == 1){
-                        next();
+    console.log(req.body)
+    subject.findOne({ 'class_id': class_id }, function (err, result) {
+        if (err) throw err;
+        if (result == null) {
+            new subject({ '_id': new mongoose.Types.ObjectId, 'class_id': class_id }).save(function (err) {
+                if (err) console.log(err.message)
+                subject.updateOne({ 'class_id': class_id }, { $push: { subjects: sub } }, async function (err, updated) {
+                    if (updated.nModified == 1) {
+                        console.log('updated message')
+                        unique_subjects.findOne({'subject_id':1}, function(er, cbb){console.log(cbb)})
+                           sub.forEach(ele => {
+                            counter.findOne({'subject_id':1}, function(err, idNo){
+                                    
+                         });
+                         });
                     }
                 })
-            })    
-           } else {
-             subject.deleteOne({'class_id':class_id}, function(err, cb){
-                   if (err) console.log(err);
-                   console.log(cb);
-               })
-           }
+            })
+        } else {
+            console.log('already present in the database');
+        }
     })
+
 })
 
-function isValidUser(req,res,next){
-    if(req.isAuthenticated()){
-    next();
+function isValidUser(req, res, next) {
+    if (req.isAuthenticated()) {
+        next();
     }
-    else{
+    else {
         res.redirect('/');
-  }
-  }
+    }
+}
 
 module.exports = router;
