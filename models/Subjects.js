@@ -20,6 +20,5 @@ var subjectSchema = new Schema({
 );
 
 
-module.exports = mongoose.model('unique_subjects', unique_subjects, 'unique_subjects')
 
 module.exports=mongoose.model('subject', subjectSchema, 'subject');
