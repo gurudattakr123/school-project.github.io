@@ -10,8 +10,8 @@ const UniqSub = require('../models/UniqSub');
 router.get('/list', isValidUser, function (req, res, next) {
     classes.find({}, { class_name: 1, class_id: 1 }, function (err1, cls_names) {
         subject.find({}, function(err2, sub_names){
-            // console.log(sub_names);
-            // console.log(cls_names);
+            console.log(sub_names);
+            console.log(cls_names);
             classes.aggregate([{$lookup:{
                 from: "subject",
                 localField: "class_id",
@@ -80,26 +80,32 @@ router.post('/update_subjects', function (req, res, next) {
     var sub = [];
     sub = req.body.subjects;
     console.log(req.body)
-    subject.findOne({ 'class_id': class_id }, function (err, result) {
+    classes.findOne({ 'class_id': class_id }, function (err, result) {
         if (err) throw err;
-        if (result == null) {
-            new subject({ '_id': new mongoose.Types.ObjectId, 'class_id': class_id }).save(function (err) {
-                if (err) console.log(err.message)
-                subject.updateOne({ 'class_id': class_id }, { $push: { subjects: sub } }, async function (err, updated) {
+        console.log(result.subject_names)
+        if (result.subject_names.length == 0) {
+                classes.updateOne({ 'class_id': class_id }, { $push: { subject_names: sub } },{upsert:true}, async function (err, updated) {
                     if (updated.nModified == 1) {
                         console.log('updated message')
                         await sub.forEach(ele => {
-                            UniqSub.updateOne({'_id':ObjectId('5bf64c224dd39b1a00475658')}, { $addToSet: { 'subject_name': ele } },{upsert:true}, function(err, cb){
+                            subject.updateOne({'_id':ObjectId('5bf64c224dd39b1a00475658')}, { $addToSet: { 'subject_name': ele } },{upsert:true}, function(err, cb){
                                 if(err) console.log(err);
-                                console.log('updated subjects'); //toastr message
-                                res.redirect('/subjects/list')
+                                console.log('updated subjects1'); //toastr message
+                                res.redirect('/subjects/list');
                             })
                         })  
-                    }
-                })
-            })
+                     }
+                 })
+            
         } else {
             console.log('already present in the database');
+            sub.forEach(ele => {
+                subject.updateOne({'_id':ObjectId('5bf64c224dd39b1a00475658')}, { $addToSet: { 'subject_name': ele } },{upsert:true}, function(err, cb){
+                    if(err) console.log(err);
+                })
+            })
+            console.log('updated subjects2'); //toastr message
+            res.redirect('/subjects/list');  
         }
     })
 
