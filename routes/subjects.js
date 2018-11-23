@@ -1,15 +1,26 @@
 const express = require('express');
 const router = express.Router();
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+var ObjectId = require('mongodb').ObjectId;
 counter = require('../models/Counter');
 const classes = require('../models/Classes');
 const subject = require('../models/Subjects');
-const unique_subjects = require('../models/Subjects');
+const UniqSub = require('../models/UniqSub');
 
 router.get('/list', isValidUser, function (req, res, next) {
-    classes.find({}, { class_name: 1, class_id: 1 }, function (err, cls_names) {
-        res.render('subjects-list', { classes: cls_names });
+    classes.find({}, { class_name: 1, class_id: 1 }, function (err1, cls_names) {
+        subject.find({}, function(err2, sub_names){
+            // console.log(sub_names);
+            // console.log(cls_names);
+            classes.aggregate([{$lookup:{
+                from: "subject",
+                localField: "class_id",
+                foreignField: "class_id",
+                as: "class_sub"
+            }}], function(err, result){console.log(result)})
+        res.render('subjects-list', { classes: cls_names, sub_names:sub_names });
     })
+})
 })
 
 router.get('/add', isValidUser, function (req, res, next) {
@@ -66,7 +77,8 @@ router.get('/add', isValidUser, function (req, res, next) {
 
 router.post('/update_subjects', function (req, res, next) {
     var class_id = req.body.class;
-    var sub = req.body.subjects;
+    var sub = [];
+    sub = req.body.subjects;
     console.log(req.body)
     subject.findOne({ 'class_id': class_id }, function (err, result) {
         if (err) throw err;
@@ -76,23 +88,13 @@ router.post('/update_subjects', function (req, res, next) {
                 subject.updateOne({ 'class_id': class_id }, { $push: { subjects: sub } }, async function (err, updated) {
                     if (updated.nModified == 1) {
                         console.log('updated message')
-                           sub.forEach(ele => {
-                            counter.findOne({},{'subject_id':1}, function(err, idNo){
-                                if(err) throw err;
-                                count = idNo.subject_id;
-                                subject_id = "sub_"+(count + 1);
-                                counter.updateOne({'subject_id':count}, { $set: { "subject_id" : (count+1) } }, function(err, reslt){
-                                    if(err) throw err;
-                                    if(reslt.nModified == 1){
-                                          // check elemMatch
-                                       }
-                                    }).save(function(err){
-                                        if(err) throw err;
-                                        })
-                                            console.log('success');//send toastr success
-                                            res.redirect('/subjects/list')
-                         });
-                      });
+                        await sub.forEach(ele => {
+                            UniqSub.updateOne({'_id':ObjectId('5bf64c224dd39b1a00475658')}, { $addToSet: { 'subject_name': ele } },{upsert:true}, function(err, cb){
+                                if(err) console.log(err);
+                                console.log('updated subjects'); //toastr message
+                                res.redirect('/subjects/list')
+                            })
+                        })  
                     }
                 })
             })

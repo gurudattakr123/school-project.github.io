@@ -3,7 +3,7 @@ const router = express.Router();
 const teacher = require('../models/Teachers')
 const multer = require('multer');
 const counter = require('../models/Counter');
-
+const AllSubjects = require('../models/UniqSub');
 
 
 var upload = multer({storage: multer.diskStorage({
@@ -21,10 +21,11 @@ router.get('/list', isValidUser, function(req, res, next){
         res.render('teachers_list', {teachers:result});
     });
 })
-
 router.get('/add', isValidUser, function(req, res, next){
-    res.render('add-teacher', {subjects:result});
-})
+    AllSubjects.findOne({}, {'subject_name':1}, function(err, allSubs){
+        res.render('add-teacher', {subjects:allSubs.subject_name});
+    });
+});
 
 router.get('/attendance', isValidUser, function(req, res, next){
     teacher.find(function(err, result){
