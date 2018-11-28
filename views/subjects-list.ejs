@@ -118,7 +118,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                       
+                                        <% for(ele in classes){ %>
+                                         <tr>
+                                            <td>   
+                                            <%=classes[ele].subject_names %>
+                                            </td> 
+                                            <td><%= classes[ele].class_name %> </td>
+                                            <td>Action</td>
+                                           <% } %>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>

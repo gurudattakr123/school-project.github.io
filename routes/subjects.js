@@ -5,22 +5,13 @@ var ObjectId = require('mongodb').ObjectId;
 counter = require('../models/Counter');
 const classes = require('../models/Classes');
 const subject = require('../models/Subjects');
-const UniqSub = require('../models/UniqSub');
 
 router.get('/list', isValidUser, function (req, res, next) {
-    classes.find({}, { class_name: 1, class_id: 1 }, function (err1, cls_names) {
-        subject.find({}, function(err2, sub_names){
-            console.log(sub_names);
-            console.log(cls_names);
-            classes.aggregate([{$lookup:{
-                from: "subject",
-                localField: "class_id",
-                foreignField: "class_id",
-                as: "class_sub"
-            }}], function(err, result){console.log(result)})
-        res.render('subjects-list', { classes: cls_names, sub_names:sub_names });
+    classes.find({}, { 'class_name': 1, 'class_id': 1, 'subject_names':1, _id:0 }, function (err1, cls_detail) {
+        if(err1) console.log(err1);
+        console.log(cls_detail.subject_names)
+        res.render('subjects-list', { classes: cls_detail});
     })
-})
 })
 
 router.get('/add', isValidUser, function (req, res, next) {
@@ -91,9 +82,10 @@ router.post('/update_subjects', function (req, res, next) {
                             subject.updateOne({'_id':ObjectId('5bf64c224dd39b1a00475658')}, { $addToSet: { 'subject_name': ele } },{upsert:true}, function(err, cb){
                                 if(err) console.log(err);
                                 console.log('updated subjects1'); //toastr message
-                                res.redirect('/subjects/list');
+                                
                             })
-                        })  
+                        })
+                        res.redirect('/subjects/list');  
                      }
                  })
             
