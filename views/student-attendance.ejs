@@ -64,7 +64,7 @@
                              <div class="col-md-4 class-select">
                              <div class="card p-30 card-hover">
                              <div class="custom-select">
-                             <select name="class" required>
+                             <select name="class" required id="attendance_class">
                                                 <option name="" value="class">Class</option>
                                                 <% for(i = 0; i < classes.length; i++){ %>
                                                 <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
@@ -77,10 +77,10 @@
                                  <div class="col-md-4 section-select">
                                  <div class="card p-30 card-hover">
                                  <div class="custom-select">
-                                 <select name="section" required>
+                                 <select name="section" required id="attendance_section">
                                                 <option name="" value="section">Section</option>
                                                 <% for(i = 0; i < sections.length; i++){ %>
-                                                <option value="<%= sections[i] %>"><%= sections[i]%></option>
+                                                <option value="<%= sections[i].class_id %>"><%= sections[i]%></option>
                                                 <% } %> 
                                             </select>
                                  </div>
@@ -126,6 +126,7 @@
     </div>
     <!-- End Wrapper -->
     <!-- All Jquery -->
+    
     <script src="js/select2/dist/js/select2.full.min.js"></script>
     <script src="js/lib/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
