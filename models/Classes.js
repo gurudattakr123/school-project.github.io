@@ -6,7 +6,7 @@ var ClassSchema=new Schema({
         class_id : String,
         class_name : String,
         class_number : Number,
-
+        sections : Array,
         subject_id : String,
         subject_names : Array,
         

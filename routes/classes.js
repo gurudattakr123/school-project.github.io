@@ -29,8 +29,8 @@ router.get('/add', isValidUser, function(req, res, next){
 
 router.get('/:class_id', isValidUser, function(req, res){
     student.find({'class_id': req.params.class_id}, function(err, students){
-        section.distinct('section_name',{'class_id':req.params.class_id}, function(err, section){
-        res.render('list_of_students',{students:students, class_id:req.params.class_id, sections:section})
+        Class.find({'class_id':req.params.class_id},{'_id':0}, function(err, cls_result){
+        res.render('classwise_list_of_students',{students:students, class_details:cls_result})
     })
 })
 })
@@ -94,6 +94,14 @@ router.post('/sections/add.for=:class_id', function(req, res){
                 'class_teacher' : class_teacher_id
             }).save(function(err){
                 if(err) throw err;
+                Class.updateOne({ 'class_id': class_id }, { $push: { sections: section_name } },{upsert:true}, function (err, updated) {
+                    if (updated.nModified == 1) {
+                        console.log('added section_name inside class collection')
+                    }
+                    else{
+                        console.log('could not add section_name inside class collection')
+                    }
+                })
             })
             console.log('success');//send toastr success
             res.redirect('/classes/'+class_id);

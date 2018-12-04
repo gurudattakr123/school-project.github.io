@@ -78,10 +78,6 @@
                                  <div class="card p-30 card-hover">
                                  <div class="custom-select">
                                  <select name="section" required id="attendance_section">
-                                                <option name="" value="section">Section</option>
-                                                <% for(i = 0; i < sections.length; i++){ %>
-                                                <option value="<%= sections[i].class_id %>"><%= sections[i]%></option>
-                                                <% } %> 
                                             </select>
                                  </div>
                                  </div>
@@ -91,10 +87,7 @@
                          <div class="col-md-4 subject-select">
                              <div class="card p-30 card-hover">
                              <div class="custom-select">
-                             <select name="subject">
-                                 <option name="" value="null">subject</option>
-                                 <option name="admin" value="A">A</option>
-                                 <option name="operator" value="B">B</option>
+                             <select name="subject" id="attendance_subject">
                              </select>
                              </div>
                              </div>
@@ -126,7 +119,7 @@
     </div>
     <!-- End Wrapper -->
     <!-- All Jquery -->
-    
+    <script src="js/customSelect.js"></script>
     <script src="js/select2/dist/js/select2.full.min.js"></script>
     <script src="js/lib/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->

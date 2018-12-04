@@ -60,12 +60,12 @@
                 <!-- Start Page Content -->
                 <div class="row">
                     <div class="col-12">
-                    <div class="col-3"><a href="/classes/sections/add.for=<%=class_id %>" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2"><i class="fa fa-plus"></i> Add section to this class.</a></div>
+                    <div class="col-3"><a href="/classes/sections/add.for=<%=class_details[0].class_id %>" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2"><i class="fa fa-plus"></i> Add section to this class.</a></div>
                        
                     <!--if condition apply here-->
                         <div class="card">
                         <div class="card-body">
-                        <h5>Sections : <a href="#"><b><%=sections %></b><a></h5>
+                        <h5>Sections : <a href="#"><b><%=class_details[0].sections %></b><a></h5>
                             <div class="table-responsive">
                                 <table id="myTable" class="table table-bordered table-striped">
                                     <thead>
@@ -81,7 +81,7 @@
                                     </thead>
                                     <tbody>
                                     <% for(i=0; i < students.length; i++){%>
-                                        <tr data-url="#">
+                                        <tr>
                                             <td><%= students[i].roll_number %></td>
                                             <td><%=students[i].first_name+' '+students[i].last_name %></td>
                                             <td><%=students[i].gender %></td>

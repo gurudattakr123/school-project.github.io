@@ -14,7 +14,7 @@
     "body-parser": "*",
     "bootstrap-confirmation2": "^4.0.2",
     "connect-flash": "*",
-    "connect-mongo": "^2.0.2",
+    "connect-mongo": "^2.0.3",
     "ejs": "*",
     "express": "^4.16.4",
     "express-messages": "*",
