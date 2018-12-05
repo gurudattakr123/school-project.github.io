@@ -36,6 +36,7 @@ router.get('/:class_id', isValidUser, function(req, res){
 })
 
 
+
 router.post('/add', function(req, res){
     var url = req.originalUrl;
     class_number = req.body.class_number;
