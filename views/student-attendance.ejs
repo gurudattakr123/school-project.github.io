@@ -13,11 +13,13 @@
     <title>Ela - Bootstrap Admin Dashboard Template</title>
     <!-- Bootstrap Core CSS -->
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
     <!-- Custom CSS -->
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link href="js/select2/dist/css/select2.css" rel="stylesheet">
+
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -61,37 +63,61 @@
                             </div>
                         <div class="card-body">
                         <div class="row">
-                             <div class="col-md-4 class-select">
+                             <div class="col-md-4">
                              <div class="card p-30 card-hover">
-                             <div class="custom-select">
-                             <select name="class" required id="attendance_class">
-                                                <option name="" value="class">Class</option>
+                            
+                             <select name="class" class="selectpicker" data-style="btn-primary" required>
+                                                <option name="" value="">Class</option>
                                                 <% for(i = 0; i < classes.length; i++){ %>
                                                 <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
                                                 <% } %> 
                                             </select>
                              </div>
                              </div>
+                          
+
+                            <div class="col-md-4">
+                            <div class="card p-30 card-hover">
+                            <select class="selectpicker" data-style="btn-default" multiple data-max-options="3" data-live-search="true">
+                            <optgroup label="Web">
+                                <option>PHP</option>
+                                <option>CSS</option>
+                                <option>HTML</option>
+                                <option>CSS 3</option>
+                                <option>Bootstrap</option>
+                                <option>JavaScript</option>
+                            </optgroup>
+                            <optgroup label="Programming">
+                              <option>Java</option>
+                              <option>C#</option>
+                              <option>Python</option>
+                            </optgroup>
+                          </select>
+                            </div>
                             </div>
 
-                                 <div class="col-md-4 section-select">
-                                 <div class="card p-30 card-hover">
-                                 <div class="custom-select">
-                                 <select name="section" required id="attendance_section">
-                                            </select>
-                                 </div>
-                                 </div>
-                                 </div>
-
-
-                         <div class="col-md-4 subject-select">
-                             <div class="card p-30 card-hover">
-                             <div class="custom-select">
-                             <select name="subject" id="attendance_subject">
-                             </select>
-                             </div>
-                             </div>
-                            </div> 
+                    <div class="col-md-4 subject-select">
+                        <div class="card p-30 card-hover">
+                        
+                        <select class="selectpicker" data-style="btn-default" multiple data-max-options="3" data-live-search="true">
+                        <optgroup label="Web">
+                            <option>PHP</option>
+                            <option>CSS</option>
+                            <option>HTML</option>
+                            <option>CSS 3</option>
+                            <option>Bootstrap</option>
+                            <option>JavaScript</option>
+                        </optgroup>
+                        <optgroup label="Programming">
+                          <option>Java</option>
+                          <option>C#</option>
+                          <option>Python</option>
+                        </optgroup>
+                      </select>
+                        </select>
+                       
+                        </div>
+                       </div> 
                           
                             <div class="form-actions" style="position:absolute; top:200px; right:50px;" >
                             <button type="submit" class="btn btn-success"> <i class="fa fa-list"></i> List</button>
@@ -120,11 +146,12 @@
     <!-- End Wrapper -->
     <!-- All Jquery -->
    
-    <script src="js/select2/dist/js/select2.full.min.js"></script>
     <script src="js/lib/jquery/jquery.min.js"></script>
+    <script src="js/customSelect.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
     <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
     <!--Menu sidebar -->
@@ -133,7 +160,7 @@
     <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
-    <script src="js/customSelect.js"></script>
+    
 </body>
 
 </html>

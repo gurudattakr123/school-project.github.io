@@ -26,6 +26,9 @@ router.get('/add', isValidUser, function(req, res, next){
     res.render('add-class', {tchr_details : result});
      });
 });
+router.get('/testing',function(req,res){
+    res.render('test');
+})
 
 router.get('/:class_id', isValidUser, function(req, res){
     student.find({'class_id': req.params.class_id}, function(err, students){
