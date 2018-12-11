@@ -82,8 +82,7 @@
                                         <div class="form-group row">
                                         <label for="web" class="col-sm-3 control-label">Gender*</label>
                                         <div class="col-sm-9">
-                                            <select name="gender" class="selectpicker" multiple>
-                                                <option name="" value="gender">Gender</option>
+                                            <select name="gender" class="selectpicker">
                                                 <option name="male" value="male">Male</option>
                                                 <option name="female" value="female">Female</option>
                                             </select>
@@ -161,8 +160,7 @@
                                 <div class="form-group row">
                                     <label for="web" class="col-sm-3 control-label">Subject Specialization*</label>
                                     <div class="col-sm-6">
-                                        <select name="subjects" class="selectpicker" multiple>
-                                        <option name="" value="subject">Subject</option>
+                                        <select name="subjects" class="selectpicker" data-style="btn-default" multiple data-max-options="3" data-live-search="true">
                                             <% for(i = 0; i < subjects.length; i++){ %>
                                             <option value="<%= subjects[i] %>"><%= subjects[i] %></option>
                                             <% } %> 

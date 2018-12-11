@@ -80,12 +80,12 @@
                                     </thead>
                                     <tbody>
                                     <% for(i=0; i < students.length; i++){%>
-                                        <tr data-url="#">
+                                        <tr>
                                             <td><%= students[i].roll_number %></td>
                                             <td><%=students[i].first_name+' '+students[i].last_name %></td>
                                             
                                             <td><label class="radio-inline"><input type="radio" value="present" name="<%= students[i].student_id %>" checked>Present</label>
-                                            <label class="radio-inline"><input type="radio" value="absent" name="<%= students[i].student_id %>">Absent</label></td>
+                                            <label class="radio-inline"><input type="radio" value="present" name="<%= teachers[i].teacher_id %>">Half Day</label><label class="radio-inline"><input type="radio" value="absent" name="<%= students[i].student_id %>">Absent</label></td>
                                         </tr>
                                     <%}%>
                                     </tbody>

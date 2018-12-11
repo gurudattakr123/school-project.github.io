@@ -64,10 +64,10 @@
                         <div class="card-body">
                         <div class="row">
                              <div class="col-md-4">
-                             <div class="card p-30 card-hover">
+                             <div class="card p-30">
                             
-                             <select name="class" class="selectpicker" data-style="btn-primary" required>
-                                                <option name="" value="">Class</option>
+                             <select name="class" id="attendance_class" class="selectpicker" data-style="btn-default"  data-live-search="true" required>
+                             <optgroup label="Classes">
                                                 <% for(i = 0; i < classes.length; i++){ %>
                                                 <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
                                                 <% } %> 
@@ -78,20 +78,8 @@
 
                             <div class="col-md-4">
                             <div class="card p-30 card-hover">
-                            <select class="selectpicker" data-style="btn-default" multiple data-max-options="3" data-live-search="true">
-                            <optgroup label="Web">
-                                <option>PHP</option>
-                                <option>CSS</option>
-                                <option>HTML</option>
-                                <option>CSS 3</option>
-                                <option>Bootstrap</option>
-                                <option>JavaScript</option>
-                            </optgroup>
-                            <optgroup label="Programming">
-                              <option>Java</option>
-                              <option>C#</option>
-                              <option>Python</option>
-                            </optgroup>
+                            <select id="attendance_section" class="selectpicker" data-style="btn-default">
+                            <optgroup label="Sections">
                           </select>
                             </div>
                             </div>

@@ -71,8 +71,8 @@
                                         <td><%=teachers[i].first_name+' '+teachers[i].last_name %></td>
                                         <td><%=teachers[i].phone_num %></td>
                                         <td><%=teachers[i].email %></td>
-                                        <td><label class="radio-inline"><input type="radio" value="present" name="<%= teachers[i].teacher_id %>" checked>Present</label> 
-                                        <label class="radio-inline"><input type="radio" value="absent" name="<%= teachers[i].teacher_id %>">Absent</label></td>
+                                        <td><label class="radio-inline"><input type="radio" value="present" name="<%= teachers[i].teacher_id %>" checked>Present</label><br><label class="radio-inline"><input type="radio" value="present" name="<%= teachers[i].teacher_id %>">Half Day</label> 
+                                        <br><label class="radio-inline"><input type="radio" value="absent" name="<%= teachers[i].teacher_id %>">Absent</label></td>
                                     </tr>
                                 <%}%>
                                     </tbody>

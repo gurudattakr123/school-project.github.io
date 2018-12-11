@@ -43,7 +43,7 @@ router.get('/add', isValidUser, function(req, res, next){
 });
 
 
-router.get('/attendance', isValidUser, function(req, res, next){
+router.get('/attendance', function(req, res, next){
     classes.find({}, {_id:0}, function(err, cls_details){
         student.distinct("section_name", function(err, sect_names){  
             var customSelect;         
@@ -54,6 +54,14 @@ router.get('/attendance', isValidUser, function(req, res, next){
         })
     });
 })
+
+
+router.post('/select', function(req, res){
+    classes.findOne({'class_id':req.body.id},{sections:1, subject_names:1, _id:0}, function(err, cls_dt){
+        res.json(JSON.stringify({'sections':cls_dt.sections, 'subjects':cls_dt.subject_names}))
+    })
+})
+
 
 router.post('/attendance', function(req, res){
     class_id = req.body.class;
