@@ -121,7 +121,9 @@
                                         <% for(ele in classes){ %>
                                          <tr>
                                             <td>   
-                                            <%=classes[ele].subject_names %>
+                                            <% for(i=1; i< classes[ele].subject_names.length; i++){ %> 
+                                            <%= i %>] <%= classes[ele].subject_names[i] %><br>%>
+                                             <%}%>
                                             </td> 
                                             <td><%= classes[ele].class_name %> </td>
                                             <td>Action</td>

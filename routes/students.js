@@ -29,35 +29,30 @@ today = mm + '/' + dd + '/' + yyyy;
 return today;
 }
 
-router.get('/list', isValidUser, function(req, res, next){
+router.get('/list', isValidUser, isValidUser, function(req, res, next){
     student.find(function(err, result){
         res.render('students_list', {students:result});
 
     });
 })
 
-router.get('/add', isValidUser, function(req, res, next){
+router.get('/add',isValidUser, function(req, res, next){
     classes.find({}, {class_name:1, class_id:1}, function(err, cls_names){
         res.render('add-student',{classes: cls_names});
     })
 });
 
 
-router.get('/attendance', function(req, res, next){
+router.get('/attendance',isValidUser, function(req, res, next){
     classes.find({}, {_id:0}, function(err, cls_details){
-        student.distinct("section_name", function(err, sect_names){  
-            var customSelect;         
-            for(ele in cls_details){
-                customSelect += cls_details[ele].class_name +':' +'['+cls_details[ele].sections+']\n'
-            }
-    res.render('student-attendance', {classes : cls_details, customSelect:customSelect, sections : sect_names})
+    res.render('student-attendance', {classes : cls_details})
         })
     });
-})
 
 
-router.post('/select', function(req, res){
+router.post('/select', isValidUser, function(req, res){
     classes.findOne({'class_id':req.body.id},{sections:1, subject_names:1, _id:0}, function(err, cls_dt){
+        console.log(cls_dt)
         res.json(JSON.stringify({'sections':cls_dt.sections, 'subjects':cls_dt.subject_names}))
     })
 })
@@ -67,7 +62,7 @@ router.post('/attendance', function(req, res){
     class_id = req.body.class;
     section_name = req.body.section;
     subject_id = req.body.subject;
-    student.find({'class_id':req.body.class, 'section_name':section_name}, function(err, students){
+    student.find({'class_id':class_id, 'section_name':section_name}, function(err, students){
         res.render('student_attendance_list', { students : students })
     })
 })

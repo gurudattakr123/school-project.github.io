@@ -17,12 +17,8 @@
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-    <!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -78,16 +74,14 @@
                                         <div class="form-group row">
                                         <label for="web" class="col-sm-3 control-label">Class Teacher*</label>
                                         <div class="col-sm-9">
-                                            <div class="custom-select">
-                                            <select name="class_teacher">
-                                                <option name="" value="">Teacher Name</option>
+                                        <select name="class_teacher" class="selectpicker" data-style="btn-default" title="Class Teacher" data-live-search="true">
                                                 <% for(i = 0; i < tchr_details.length; i++){ %>
                                                 <option value="<%= tchr_details[i].teacher_id %>"><%= tchr_details[i].first_name+' '+tchr_details[i].last_name %></option>
                                                 <% } %> 
                                             </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    
 
                                     <div class="form-group row">
                                             <label for="exampleInputuname3" class="col-sm-3 control-label">Note</label>
@@ -121,7 +115,6 @@
         <!-- End Page wrapper  -->
     </div>
     <!-- End Wrapper -->
-    <!-- All Jquery -->
     <script src="js/lib/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
@@ -134,6 +127,13 @@
     <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
+</body>
 
 </body>
 

@@ -17,15 +17,8 @@
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <script src="js/lib/jquery/jquery.min.js"></script>
-    <script src="../node_modules/parsleyjs/dist/parsley.js"></script>
-    
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-    <!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -88,13 +81,10 @@
                                     <div class="form-group row">
                                         <label for="web" class="col-sm-3 control-label">Gender*</label>
                                         <div class="col-sm-9">
-                                            <div class="custom-select">
-                                            <select name="gender" required >
-                                                <option name="" value="gender">Gender</option>
+                                            <select  name="gender" class="selectpicker" title="Select Gender" data-style="btn-default">
                                                 <option name="male" value="male">Male</option>
                                                 <option name="female" value="female">Female</option>
                                             </select>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -119,9 +109,7 @@
                                         <div class="form-group row">
                                         <label for="web" class="col-sm-3 control-label">Blood Group*</label>
                                         <div class="col-sm-9">
-                                            <div class="custom-select">
-                                            <select name="blood_group" required >
-                                                <option name="" value="gender">Select Blood group</option>
+                                        <select name="blood_group" class="selectpicker" title="Select Blood Group" data-style="btn-default">
                                                 <option name="a+" value="a+">A+</option>
                                                 <option name="a-" value="a-">A-</option>
                                                 <option name="ab+" value="ab+">AB+</option>
@@ -132,48 +120,34 @@
                                                 <option name="O-" value="o-">O-</option>
                                             </select>
                                             </div>
-                                        </div>
+                                        
                                     </div>
 
                                         
                                         <div class="form-group row">
                                         <label for="web" class="col-sm-3 control-label">Class*</label>
                                         <div class="col-sm-6">
-                                            <div class="custom-select">
-                                            <select name="class" required>
-                                                <option name="" value="class">Class</option>
+                                        <select id="student_class" name="class" class="selectpicker" title="Select Class" data-style="btn-default" >
                                                 <% for(i = 0; i < classes.length; i++){ %>
                                                 <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
                                                 <% } %> 
                                             </select>
                                             </div>
-                                            </div>
                                             <div class="col-sm-3"><a href="/classes/add" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-1"><i class="fa fa-plus"></i> Add Class.</a></div>
                                     </div>
 
 
-                                 <!--   <div class="form-group row">
+                                 <div class="form-group row">
                                     <label for="web" class="col-sm-3 control-label">Section*</label>
                                     <div class="col-sm-6">
-                                        <div class="custom-select" required>
-                                        <select name="section">
-                                            <option name="" value="gender">section</option>
-                                            <option name="asection" value="a">A</option>
-                                            <option name="bsection" value="b">B</option>
-                                        </select>
+                                    <select id="student_section" name="section" class="selectpicker" title="Select Section" data-style="btn-default">
+                                    </select>
+                                        
                                         </div>
-                                        </div>
-                                        <div class="col-sm-3"><a href="/sections/add" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-1"><i class="fa fa-plus"></i> Add Class.</a></div>
-                                </div>  -->
+                                        <div class="col-sm-3"><a href="/sections/add" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-1"><i class="fa fa-plus"></i> Add Section.</a></div>
+                                </div> 
                                     
-                                <div class="form-group row">
-                                    <label for="exampleInputEmail3" class="col-sm-3 control-label">Section*</label>
-                                    <div class="col-sm-9">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="section" placeholder="Enter section" required>
-                                        </div>
-                                    </div>
-                                </div>
+                               
 
 
                                     <div class="form-group row">
@@ -315,16 +289,25 @@ function getAge(){
 }
 
 </script>
-    <script src="js/lib/bootstrap/js/popper.min.js"></script>
-    <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="js/jquery.slimscroll.js"></script>
-    <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
-    <!--stickey kit -->
-    <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
-    <!--Custom JavaScript -->
-    <script src="js/custom.min.js"></script>
+<script src="js/lib/jquery/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="js/lib/bootstrap/js/popper.min.js"></script>
+<script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="js/jquery.slimscroll.js"></script>
+<!--Menu sidebar -->
+<script src="js/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<!--Custom JavaScript -->
+<script src="js/custom.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+<script src="js/customSelect.js"></script>
+</body>
+
+</html>
 
 </body>
 

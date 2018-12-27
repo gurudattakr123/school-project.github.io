@@ -17,12 +17,8 @@
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-    <!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -60,12 +56,34 @@
                 <!-- Start Page Content -->
                 <div class="row">
                     <div class="col-12">
-                    <div class="col-3"><a href="/classes/sections/add.for=<%=class_details[0].class_id %>" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2"><i class="fa fa-plus"></i> Add section to this class.</a></div>
-                       
+
+                    <div class="row justify-content-between">
+                    <div class="col-sm-3">
+                    <a href="/classes/sections/add.for=<%=class_details[0].class_id %>" style="border-color:transparent" class="btn btn-dark btn-outline m-b-1 m-l-2"><i class="fa fa-plus"></i> Add section to this class.</a>
+
+                        </div>
+                        <div class="col-sm-3 col-sm-offset-3">
+                        <select name="sections" id="sectionwise_students" class="selectpicker" title="Sectionwise Students" data-style="btn-default"  data-live-search="true" required>
+                        <% for(i = 0; i < class_details[0].sections.length ; i++){ %>
+                        <option value="<%= class_details[0].sections[i] %>"><%= class_details[0].sections[i] %></option>
+                        <% } %> 
+                    </select>
+                    </div>
+                </div>
+
+
+                    <% if(class_details[0].sections != undefined || class_details.sections != null){ %>
+                    
+                    
                     <!--if condition apply here-->
                         <div class="card">
                         <div class="card-body">
                         <h5>Sections : <a href="#"><b><%=class_details[0].sections %></b><a></h5>
+                        <%} else {%>
+                        <div class="card">
+                        <div class="card-body">
+                        <h5>Sections : <a href="#"><b>Sections not available</b><a></h5>
+                   <% } %>
                             <div class="table-responsive">
                                 <table id="myTable" class="table table-bordered table-striped">
                                     <thead>
@@ -115,7 +133,6 @@
         <!-- End Page wrapper  -->
     </div>
     <!-- End Wrapper -->
-    <!-- All Jquery -->
     <script src="js/lib/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
@@ -128,6 +145,11 @@
     <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
+<script src="js/customSelect.js"></script>
 
     
     <script src="js/lib/datatables/datatables.min.js"></script>

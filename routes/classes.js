@@ -15,7 +15,6 @@ router.get('/list', isValidUser, function(req, res, next){
                 
             })    
         });
-        
         res.render('class_list', {classes : result, teachers:tchrArray});
     })
 });
@@ -30,7 +29,7 @@ router.get('/testing',function(req,res){
     res.render('test');
 })
 
-router.get('/:class_id', isValidUser, function(req, res){
+router.get('/:class_id',  function(req, res){
     student.find({'class_id': req.params.class_id}, function(err, students){
         Class.find({'class_id':req.params.class_id},{'_id':0}, function(err, cls_result){
         res.render('classwise_list_of_students',{students:students, class_details:cls_result})
@@ -38,7 +37,13 @@ router.get('/:class_id', isValidUser, function(req, res){
 })
 })
 
-
+router.post('/:class_id',  function(req, res, next){
+    console.log(req.params.class_id, req.body.section_name)
+    student.find({$and:[{'class_id': req.params.class_id, 'section_name':req.body.section_name}]}, function(err, students){
+        console.log(students)
+    res.send(JSON.stringify(students))        
+    })
+})
 
 router.post('/add', function(req, res){
     var url = req.originalUrl;
@@ -74,7 +79,10 @@ router.get('/sections/add.for=:class_id', isValidUser, function(req, res, next){
     });
 });
 
-
+router.post('/add-sectionSelect', function(req, res, next){
+    var class_id = req.body.cls_id;
+    console.log(class_id);
+})
 
 router.post('/sections/add.for=:class_id', function(req, res){
     console.log(req.body)
@@ -83,7 +91,6 @@ router.post('/sections/add.for=:class_id', function(req, res){
     section_name = req.body.section_name;
     class_teacher_id = req.body.class_teacher;
     var section_id = class_id+section_name;
-    console.log(class_teacher_id, req.params.class_id, section_id)
     section.findOne({$and:[{'section_name': section_name, 'section_id' : section_id}]}, function(err, result){
         if(err) throw err;
         if(result != null){
@@ -113,12 +120,14 @@ router.post('/sections/add.for=:class_id', function(req, res){
     })
 })
 
-function isValidUser(req,res,next){
-    if(req.isAuthenticated()){
-    next();
-    }
-    else{
-        res.redirect('/');
+ function isValidUser(req,res,next){
+    if (!req.isAuthenticated() || !req.isAuthenticated) {  
+      if (req.session) {  
+          req.session.redirectUrl = req.headers.referer || req.originalUrl || req.url;  
+      }  
+      next('Not logged in');  
+  } else {
+      next();  
   }
   }
 

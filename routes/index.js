@@ -186,13 +186,14 @@ router.get('/logout', isValidUser, function(req, res){
   req.logout();
   res.redirect('/');
   });
-
   function isValidUser(req,res,next){
-    if(req.isAuthenticated()){
-    next();
-    }
-    else{
-        res.redirect('/');
+    if (!req.isAuthenticated() || !req.isAuthenticated) {  
+      if (req.session) {  
+          req.session.redirectUrl = req.headers.referer || req.originalUrl || req.url;  
+      }  
+      next('Not logged in');  
+  } else {
+      next();  
   }
   }
 

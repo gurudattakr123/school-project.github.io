@@ -1,4 +1,10 @@
-$(document.body).on('change', "#attendance_class", function () {    
+$().ready(function() {
+
+
+  var class_select = $("#attendance_class")
+  var section_select = $("#attendance_section");
+  var subject_select = $("#attendance_subject");
+  $(class_select).change( function () {    
     id = $(this).val();
     data = {'id' : id}
         $.ajax({
@@ -7,34 +13,78 @@ $(document.body).on('change', "#attendance_class", function () {
             dataType:'json',
             url: '/students/select',
       success: function(data){
-        alert(data)
           var opts = $.parseJSON(data);
-          alert(opts)
-          // // Use jQuery's each to iterate over the opts value
-           $.each(opts.sections, function(i, d) {
-            alert(d[i]) 
-            //$('#attendance_section').append('<option value="' + d[i] + '">' + d[i] + '</option>');
-        });
+          options1 = '<option disabled selected value="">Select a Section</option>';
+          options2 = '<option disabled selected value="">Select a Subject</option>'
+         
+          $.each(opts.sections, function(key, value) {
+            options1 += '<option value="' + value + '">' + value + '</option>';
+          }); 
+          $.each(opts.subjects, function(key, value) {
+            options2 += '<option value="' + value + '">' + value + '</option>';
+          });
+            section_select.html(options1);
+            subject_select.html(options2);
+            $('.selectpicker').selectpicker('refresh');
+            $('.selectpicker').selectpicker('render');
       }
   });
-    // $.ajax({
-    //     type: 'POST',
-    //     data: JSON.stringify(data),
-    //     contentType: "application/json",
-    //     dataType:'json',
-    //     url: url,                      
-    //     success: function(result, status, xhr) {
-    //             var output='<table id="datatable" class="table table-striped table-bordered bulk_action modal-table"><thead><tr><th>Details</th><th>Data</th></tr></thead><tbody>';
-    //             for (var i in result)
-    //             {
-    //             output+='<tr><td>Driver Name</td><td>'+ result[i].driver_name+'</td></tr><td>Rider_Name</td><td>'+ result[i].rider_name+'</td></tr><td>Car Details</td><td>'+ result[i].car_type +'<br>'+'Model: '+result[i].car_details.model+'<br>'+ result[i].car_details.rc_number +'</td></tr><td>Source</td><td>'+ result[i].source_addr+ '</td></tr><td>Destinamtion</td><td>'+ result[i].destination_addr+'</td></tr><td>Trip Status</td><td>'+ result[i].trip_status+'</td></tr><td>Mode of Payment</td><td>'+ result[i].payment_method+'</td></tr><td>Trip Started Time</td><td>'+ result[i].time_started+'</td></tr><td>Trip Ended Time</td><td>'+ result[i].time_completed+'</td></tr><td>Total Distance</td><td>'+ result[i].total.distance+'</td></tr><td>Total Amount</td><td>'+ result[i].total.amount+'</td></tr><td>Feedback By Rider</td><td>'+result[i].feedback.rating_by_rider+' Star Rating<br>comments: '+ result[i].feedback.comment_by_rider+'</td></tr>';
-    //             }
-    //             output+="</tbody></table>";
-    //         $('#view_detail').html(output);
-    //         $('#dataModal').modal('show');
-    //         },
-    //     error: function(error) {
-    //         alert("Something went wrong while fetching details. Please try after sometime.");
-    //      }
-    // });  
+});
+
+var sectionwise_students = $('#sectionwise_students');
+$(sectionwise_students).change( function () {    
+  id = $(this).val();
+  data = {'section_name' : id}
+  url  = window.location.pathname;
+      $.ajax({
+          type: 'POST',
+          data: data,
+          dataType:'json',
+          url: url,
+    success: function(students){
+     
+      $('#myTable').DataTable().destroy();
+      $('#myTable tbody th').empty();
+      $('#myTable').DataTable( {
+        data: students,
+        columns: [
+            { data: 'roll_number' },
+            { data: 'first_name' },
+            { data: 'gender' },
+            { data: 'age' },
+            { data: 'section_name' },
+            { data: 'admission_no' },
+            { data: " " }
+        ]
+    } );
+        }
+      })
  })
+
+
+ //done
+ var student_class = $('#student_class');
+ var student_section = $('#student_section');
+ $(student_class).change(function(){
+   id = $(this).val();
+   data = {'id' : id}
+       $.ajax({
+           type: 'POST',
+           data: data,
+           dataType:'json',
+           url: '/students/select',
+     success: function(data){
+         var opts = $.parseJSON(data);
+         options = '<option disabled selected value="">Select a Section</option>';
+        
+         $.each(opts.sections, function(key, value) {
+           options += '<option value="' + value + '">' + value + '</option>';
+         }); 
+         
+          student_section.html(options);
+          $('.selectpicker').selectpicker('refresh');
+          $('.selectpicker').selectpicker('render');
+     }
+ });
+ })
+})

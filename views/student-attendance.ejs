@@ -13,133 +13,112 @@
     <title>Ela - Bootstrap Admin Dashboard Template</title>
     <!-- Bootstrap Core CSS -->
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
     <!-- Custom CSS -->
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 
 </head>
 
 <body class="fix-header fix-sidebar">
-    <!-- Preloader - style you can find in spinners.css -->
-    <div class="preloader">
-        <svg class="circular" viewBox="25 25 50 50">
-			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div>
-    <!-- Main wrapper  -->
-    <div id="main-wrapper">
-        <!-- header header  -->
-        <% include ./partials/navbar.ejs %>
-        <% include ./partials/sidebar.ejs %>
+<!-- Preloader - style you can find in spinners.css -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+</div>
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+    <!-- header header  -->
+    <% include ./partials/navbar.ejs %>
+    <% include ./partials/sidebar.ejs %>
 
-                <!-- Page wrapper  -->
+            <!-- Page wrapper  -->
 
-        <div class="page-wrapper">
-            <!-- Bread crumb -->
-            <div class="row page-titles">
-                <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Attendance</h3> </div>
-                <div class="col-md-7 align-self-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Students Attendance</li>
-                    </ol>
+    <div class="page-wrapper">
+        <!-- Bread crumb -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-primary">Attendance</h3> </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Students Attendance</li>
+                </ol>
+            </div>
+        </div>
+        <!-- End Bread crumb -->
+        <!-- Container fluid  -->
+        <div class="container-fluid">
+            <!-- Start Page Content -->
+            <div class="row">
+            
+                <div class="col-lg-12">
+                    <!--if condition apply here-->
+                <div class="card">
+                <form action="/students/attendance" method="POST">
+                        <div class="card-header">
+                            <h4 class="text-white">Select options</h4>
+                        </div>
+                    <div class="card-body">
+                    <div class="row">
+                         <div class="col-md-4">
+                         <div class="card p-30">
+                        
+                         <select name="class" id="attendance_class" class="selectpicker" title="Select Class" data-style="btn-default"  data-live-search="true" required>
+                         <optgroup label="Classes">
+                                            <% for(i = 0; i < classes.length; i++){ %>
+                                            <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
+                                            <% } %> 
+                                        </select>
+                         </div>
+                         </div>
+                      
+
+                        <div class="col-md-4">
+                        <div class="card p-30 card-hover">
+                        <select name="section" id="attendance_section" class="selectpicker" data-live-search="true" data-style="btn-default">
+                        
+                      </select>
+                        </div>
+                        </div>
+
+                <div class="col-md-4 subject-select">
+                    <div class="card p-30 card-hover">
+                    <select name="subject" class="selectpicker" id = "attendance_subject" data-style="btn-default" data-live-search="true">
+                  </select>
+                    </div>
+                   </div> 
+                      
+                   <div class="form-actions" style="  display: table; margin: 0 auto;" ><br><br>
+                        <button type="submit" class="btn btn-success"> <i class="fa fa-list"></i> List</button>
+                        </div>
+                    
+                </form>
+                </div><br><br><br><br>
+                <div class="info noteStyle">
+                <p><strong>INFO!</strong><ul><li>This page uploads today's attendance only!</li><br><li> For attendance history, goto Reports >  Attendance Reports ><a href="#" title ="click for complete attendance report">student attendance report</a></li></ui></p>
                 </div>
             </div>
-            <!-- End Bread crumb -->
-            <!-- Container fluid  -->
-            <div class="container-fluid">
-                <!-- Start Page Content -->
-                <div class="row">
-                
-                    <div class="col-lg-12">
-                        <!--if condition apply here-->
-                    <div class="card">
-                    <form action="/students/attendance" method="POST">
-                            <div class="card-header">
-                                <h4 class="text-white">Select options</h4>
-                            </div>
-                        <div class="card-body">
-                        <div class="row">
-                             <div class="col-md-4">
-                             <div class="card p-30">
-                            
-                             <select name="class" id="attendance_class" class="selectpicker" data-style="btn-default"  data-live-search="true" required>
-                             <optgroup label="Classes">
-                                                <% for(i = 0; i < classes.length; i++){ %>
-                                                <option value="<%= classes[i].class_id %>"><%= classes[i].class_name %></option>
-                                                <% } %> 
-                                            </select>
-                             </div>
-                             </div>
-                          
-
-                            <div class="col-md-4">
-                            <div class="card p-30 card-hover">
-                            <select id="attendance_section" class="selectpicker" data-style="btn-default">
-                            <optgroup label="Sections">
-                          </select>
-                            </div>
-                            </div>
-
-                    <div class="col-md-4 subject-select">
-                        <div class="card p-30 card-hover">
-                        
-                        <select class="selectpicker" data-style="btn-default" multiple data-max-options="3" data-live-search="true">
-                        <optgroup label="Web">
-                            <option>PHP</option>
-                            <option>CSS</option>
-                            <option>HTML</option>
-                            <option>CSS 3</option>
-                            <option>Bootstrap</option>
-                            <option>JavaScript</option>
-                        </optgroup>
-                        <optgroup label="Programming">
-                          <option>Java</option>
-                          <option>C#</option>
-                          <option>Python</option>
-                        </optgroup>
-                      </select>
-                        </select>
-                       
+                    <!-- end of card div -->
                         </div>
-                       </div> 
-                          
-                            <div class="form-actions" style="position:absolute; top:200px; right:50px;" >
-                            <button type="submit" class="btn btn-success"> <i class="fa fa-list"></i> List</button>
-                            </div>
-                        
-                    </form>
-                    </div><br><br><br><br>
-                    <div class="info noteStyle">
-                    <p><strong>INFO!</strong><ul><li>This page uploads today's attendance only!</li><br><li> For attendance history, goto Reports >  Attendance Reports ><a href="#" title ="click for complete attendance report">student attendance report</a></li></ui></p>
                     </div>
                 </div>
-                        <!-- end of card div -->
-                            </div>
-                        </div>
-                    </div>
-                     <!-- End PAge Content -->
-                    </div>
-               </div></div>
-            <!-- End Container fluid  -->
-            <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
-            <!-- End footer -->
-        </div>
-        <!-- End Page wrapper  -->
+                 <!-- End PAge Content -->
+                </div>
+           </div></div>
+        <!-- End Container fluid  -->
+        <!-- footer -->
+        <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
+        <!-- End footer -->
     </div>
-    <!-- End Wrapper -->
-    <!-- All Jquery -->
-   
+    <!-- End Page wrapper  -->
+</div>
+
     <script src="js/lib/jquery/jquery.min.js"></script>
-    <script src="js/customSelect.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
     <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
     <!--Menu sidebar -->
@@ -148,7 +127,11 @@
     <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
-    
-</body>
 
-</html>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
+<script src="js/customSelect.js"></script>
+</body>
