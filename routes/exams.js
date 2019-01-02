@@ -5,7 +5,7 @@ const student = require('../models/Students');
 const Class = require('../models/Classes');
 const exam = require('../models/Exams');
 
-router.get('/list', isValidUser, function(req, res){
+router.get('/list',  function(req, res){
     exam.find({}, function(err, exam){
         res.render('exam_list',{exams:exam})
     })
@@ -69,13 +69,12 @@ router.post('/add', function(req, res){
 })
 
 
-function isValidUser(req,res,next){
-    if(req.isAuthenticated()){
-    next();
+function isValidUser (req, res, next) {
+    if (req.isAuthenticated()) { 
+        return next();
     }
-    else{
-        res.redirect('/');
+    req.session.returnTo = req.originalUrl; 
+    res.redirect('/');
   }
-  }
-
+  
 module.exports = router;

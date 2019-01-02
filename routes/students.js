@@ -29,28 +29,28 @@ today = mm + '/' + dd + '/' + yyyy;
 return today;
 }
 
-router.get('/list', isValidUser, isValidUser, function(req, res, next){
+router.get('/list', isValidUser,  function(req, res, next){
     student.find(function(err, result){
         res.render('students_list', {students:result});
 
     });
 })
 
-router.get('/add',isValidUser, function(req, res, next){
+router.get('/add', isValidUser, function(req, res, next){
     classes.find({}, {class_name:1, class_id:1}, function(err, cls_names){
         res.render('add-student',{classes: cls_names});
     })
 });
 
 
-router.get('/attendance',isValidUser, function(req, res, next){
+router.get('/attendance', isValidUser, function(req, res, next){
     classes.find({}, {_id:0}, function(err, cls_details){
     res.render('student-attendance', {classes : cls_details})
         })
     });
 
 
-router.post('/select', isValidUser, function(req, res){
+router.post('/select',  function(req, res){
     classes.findOne({'class_id':req.body.id},{sections:1, subject_names:1, _id:0}, function(err, cls_dt){
         console.log(cls_dt)
         res.json(JSON.stringify({'sections':cls_dt.sections, 'subjects':cls_dt.subject_names}))
@@ -147,13 +147,13 @@ router.post('/add', upload.any(), function(req, res, next){
 })
 
 
-function isValidUser(req,res,next){
-    if(req.isAuthenticated()){
-    next();
+function isValidUser (req, res, next) {
+    if (req.isAuthenticated()) { 
+        return next();
     }
-    else{
-        res.redirect('/');
+    req.session.returnTo = req.originalUrl; 
+    res.redirect('/');
   }
-  }
+  
 
 module.exports = router;

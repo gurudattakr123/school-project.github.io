@@ -8,14 +8,12 @@ var nodemailer = require('nodemailer');
 const students = require('../models/Students');
 const teacher = require('../models/Teachers')
 const Class = require('../models/Classes')
-const toastr = require('toastr')
 /*login get*/
 router.get('/', function(req, res){
-
-  res.render('login',{toasts:req.toastr.error});
+  res.render('login',/*{toasts:req.toastr.error}*/);
 });
 
-router.get('/dashboard',isValidUser, function(req, res, next){
+router.get('/dashboard',  isValidUser, function(req, res, next){
   students.distinct('student_id').exec(function(err1, st_count){
     if(err1) throw err1;
     teacher.distinct('teacher_id').exec(function(err2, tchr_count){
@@ -24,8 +22,7 @@ router.get('/dashboard',isValidUser, function(req, res, next){
         if(err3) throw err3;
     students.find({'payment_status':"pending"}, function(err4, student){
       if(err4) throw err4;
-      console.log(req.toastr.success)
-      res.render('dashboard', {toasts:req.toastr.success, students:student, num_of_st:st_count.length, num_of_tchr:tchr_count.length, num_of_cls:cls_count.length});
+      res.render('dashboard', { students:student, num_of_st:st_count.length, num_of_tchr:tchr_count.length, num_of_cls:cls_count.length});
      })
     })
   })
@@ -39,21 +36,20 @@ router.post('/login', function(req, res, next) {
       return next(err); 
     }
     if (!user) {
-      req.toastr.error('Invalid credentials.');
       return res.redirect('/');
     }
     req.logIn(user, function(err) {
       if (err) { 
         return next(err); 
       }
-      req.toastr.success('Signed in.');
-      return res.redirect('/dashboard');
+      res.redirect(req.session.returnTo || '/dashboard');
+      delete req.session.returnTo;
     });
   })(req, res, next);
 });
 
 /* signup get */
-router.get('/register', function(req, res){
+router.get('/register', isValidUser, function(req, res){
   res.render('register');
 });
 
@@ -182,20 +178,20 @@ router.post('/forgotPassword', function (req, res, next) {
   });
 });
 
-router.get('/logout', isValidUser, function(req, res){
-  req.logout();
+
+router.get('/logout', async (req, res) => {
+  await req.logout();
+  await req.session.destroy();
   res.redirect('/');
   });
-  function isValidUser(req,res,next){
-    if (!req.isAuthenticated() || !req.isAuthenticated) {  
-      if (req.session) {  
-          req.session.redirectUrl = req.headers.referer || req.originalUrl || req.url;  
-      }  
-      next('Not logged in');  
-  } else {
-      next();  
+
+function isValidUser (req, res, next) {
+  if (req.isAuthenticated()) { 
+      return next();
   }
-  }
+  req.session.returnTo = req.originalUrl; 
+  res.redirect('/');
+}
 
 module.exports = router;
 

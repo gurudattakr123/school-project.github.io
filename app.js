@@ -10,7 +10,9 @@ const config = require('./config/database');
 var flash = require('connect-flash');
 require('./config/passport');
 const MongoStore = require('connect-mongo')(session);
-var toastr = require('express-toastr');
+
+
+
 
 /* import routes*/
 let user = require('./routes/index')
@@ -72,17 +74,19 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(toastr());
+// app.use(toastr());
+
 
 // Global Vars
-app.use(function (req, res, next) {
-  /*res.locals.error = req.flash('error');
-  res.locals.success = req.flash('success');
-  res.locals.info = req.flash('info');*/
-  res.locals.toasts = req.toastr.render();
-  res.locals.user = req.user || null;
-  next();
-});
+// app.use(function (req, res, next) {
+//   /*res.locals.error = req.flash('error');
+//   res.locals.success = req.flash('success');
+//   res.locals.info = req.flash('info');*/
+//   res.locals.toasts = req.toastr.render();
+//   res.locals.user = req.user || null;
+//   next();
+// });
+
 
 
 /* using routed files */
@@ -101,3 +105,5 @@ app.use('/subjects', subjects);
 app.listen(5000, function () {
   console.log('Server started on port 5000...');
 });
+
+

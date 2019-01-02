@@ -29,7 +29,7 @@ router.get('/testing',function(req,res){
     res.render('test');
 })
 
-router.get('/:class_id',  function(req, res){
+router.get('/:class_id', isValidUser, function(req, res){
     student.find({'class_id': req.params.class_id}, function(err, students){
         Class.find({'class_id':req.params.class_id},{'_id':0}, function(err, cls_result){
         res.render('classwise_list_of_students',{students:students, class_details:cls_result})
@@ -120,15 +120,13 @@ router.post('/sections/add.for=:class_id', function(req, res){
     })
 })
 
- function isValidUser(req,res,next){
-    if (!req.isAuthenticated() || !req.isAuthenticated) {  
-      if (req.session) {  
-          req.session.redirectUrl = req.headers.referer || req.originalUrl || req.url;  
-      }  
-      next('Not logged in');  
-  } else {
-      next();  
+function isValidUser (req, res, next) {
+    if (req.isAuthenticated()) { 
+        return next();
+    }
+    req.session.returnTo = req.originalUrl; 
+    res.redirect('/');
   }
-  }
+  
 
 module.exports = router;

@@ -14,7 +14,7 @@ router.get('/list', isValidUser, function (req, res, next) {
     })
 })
 
-router.get('/add', isValidUser, function (req, res, next) {
+router.get('/add', isValidUser,  function (req, res, next) {
     res.render('add-subject');
 })
 
@@ -56,13 +56,12 @@ router.post('/update_subjects', function (req, res, next) {
 
 })
 
-function isValidUser(req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
+function isValidUser (req, res, next) {
+    if (req.isAuthenticated()) { 
+        return next();
     }
-    else {
-        res.redirect('/');
-    }
-}
-
+    req.session.returnTo = req.originalUrl; 
+    res.redirect('/');
+  }
+  
 module.exports = router;
