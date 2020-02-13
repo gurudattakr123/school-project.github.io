@@ -1,0 +1,9 @@
+version: "3" 
+services:
+  node-app:
+    build:
+      context: .
+    image: gurudattakr123/node-app
+    container_name: node-app
+    ports:
+      - "9000:8080"
