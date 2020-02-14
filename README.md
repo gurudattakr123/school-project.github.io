@@ -7,3 +7,9 @@ Running procedure in localhost..
  5. open browser-> enter url -> localhost:5000
  6. login credential -> email: gurudattakr123@gmail.com
 						pass: 123
+
+
+
+
+1. deployment.yaml
+2. 
