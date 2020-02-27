@@ -103,7 +103,7 @@ app.use('/subjects', subjects);
 
 /* starting server */
 app.listen(8080, function () {
-  console.log('Server started on port 8080...');
+  console.log('Server started on port 80...');
 });
 
 
